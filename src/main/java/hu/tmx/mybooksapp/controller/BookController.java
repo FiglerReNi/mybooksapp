@@ -22,7 +22,7 @@ public class BookController {
 
     @RequestMapping(path = " ", method = RequestMethod.GET)
     public String allBooksWithAuthor(Model model){
-        model.addAttribute("books", bookDao.getAllBooksWithAuthor());
+        model.addAttribute("books", "teszt");
         return "view/allBooksWithAuthor";
     }
 
