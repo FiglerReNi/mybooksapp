@@ -1,7 +1,5 @@
 package hu.tmx.mybooksapp.model;
 
-import java.time.LocalDate;
-
 public class Book {
     private int id;
     private String title;

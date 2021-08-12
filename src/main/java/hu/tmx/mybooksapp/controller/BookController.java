@@ -1,7 +1,6 @@
 package hu.tmx.mybooksapp.controller;
 
 import hu.tmx.mybooksapp.interfaces.BookDao;
-import hu.tmx.mybooksapp.service.BookDaoMem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
