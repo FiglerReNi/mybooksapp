@@ -10,14 +10,20 @@
         <div class="form-row">
             <div class="form-group table-responsive">
                 <table class='table table-bordered table-hover'>
-                    <thead th:insert="fragments/bookTable"></thead>
+                    <thead>
+                    <tr>
+                        <th class='border-secondary text-secondary text-center p-1'>Title</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Release Date</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Author</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Details</th>
+                    </tr>
+                    </thead>
                     <tbody class='border'>
                         <tr th:each="book: ${books}">
                             <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.model.Book"*/-->
                             <td th:text="${book.title}" class='border-secondary text-secondary text-center p-1'></td>
                             <td th:text="${book.releaseDate}" class='border-secondary text-secondary text-center p-1'></td>
                             <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}" class='border-secondary text-secondary text-center p-1'></td>
-                            <td th:text="${book.author.age}" class='border-secondary text-secondary text-center p-1'></td>
                             <td class='border-secondary text-white text-center p-1'>
                                 <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Click" th:id="${book.id}" name="detailsButton"></td>
                         </tr>

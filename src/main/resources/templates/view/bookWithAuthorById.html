@@ -15,7 +15,6 @@
                         <th class='border-secondary text-secondary text-center p-1'>Title</th>
                         <th class='border-secondary text-secondary text-center p-1'>Release Date</th>
                         <th class='border-secondary text-secondary text-center p-1'>Author</th>
-                        <th class='border-secondary text-secondary text-center p-1'>Age of Author</th>
                     </tr>
                     </thead>
                     <tbody class='border'>
@@ -25,7 +24,6 @@
                         <td th:text="${book.releaseDate}" class='border-secondary text-secondary text-center p-1'></td>
                         <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}"
                             class='border-secondary text-secondary text-center p-1'></td>
-                        <td th:text="${book.author.age}" class='border-secondary text-secondary text-center p-1'></td>
                     </tr>
                     </tbody>
                 </table>

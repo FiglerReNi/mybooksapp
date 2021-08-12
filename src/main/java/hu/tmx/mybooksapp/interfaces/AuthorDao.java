@@ -1,4 +1,9 @@
 package hu.tmx.mybooksapp.interfaces;
 
+import hu.tmx.mybooksapp.model.Author;
+
+import java.util.List;
+
 public interface AuthorDao {
+   List<Author> getAllAuthor();
 }
