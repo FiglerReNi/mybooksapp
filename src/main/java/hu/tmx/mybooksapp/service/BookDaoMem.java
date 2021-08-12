@@ -16,4 +16,12 @@ public class BookDaoMem implements BookDao {
     public List<Book> getAllBooksWithAuthor() {
         return BaseData.books;
     }
+
+    @Override
+    public Book getBookWithAuthorById(int id) {
+        return BaseData.books.stream()
+                        .filter(b -> b.getId() == id)
+                        .findFirst()
+                        .orElse(null);
+    }
 }

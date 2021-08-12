@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface BookDao {
    List<Book> getAllBooksWithAuthor();
+
+   Book getBookWithAuthorById(int id);
 }

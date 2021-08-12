@@ -4,20 +4,13 @@
       layout:decorate="~{fragments/main.html}">
 <body>
 <div layout:fragment="content">
-    <div class="container pt-3">
+    <div class="py-3 px-5">
         <h3 class="text-center text-secondary">My all books with author</h3>
         <br>
         <div class="form-row">
             <div class="form-group table-responsive">
                 <table class='table table-bordered table-hover'>
-                    <thead>
-                    <tr>
-                        <th class='border-secondary text-secondary text-center p-1'>Title</th>
-                        <th class='border-secondary text-secondary text-center p-1'>Release Date</th>
-                        <th class='border-secondary text-secondary text-center p-1'>Author</th>
-                        <th class='border-secondary text-secondary text-center p-1'>Age of Author</th>
-                    </tr>
-                    </thead>
+                    <thead th:insert="fragments/bookTable"></thead>
                     <tbody class='border'>
                         <tr th:each="book: ${books}">
                             <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.model.Book"*/-->
@@ -25,6 +18,8 @@
                             <td th:text="${book.releaseDate}" class='border-secondary text-secondary text-center p-1'></td>
                             <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}" class='border-secondary text-secondary text-center p-1'></td>
                             <td th:text="${book.author.age}" class='border-secondary text-secondary text-center p-1'></td>
+                            <td class='border-secondary text-white text-center p-1'>
+                                <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Click" th:id="${book.id}" name="detailsButton"></td>
                         </tr>
                     </tbody>
                 </table>
