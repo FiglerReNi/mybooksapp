@@ -1,5 +1,6 @@
 package hu.tmx.mybooksapp.controller;
 
+import hu.tmx.mybooksapp.interfaces.AuthorDao;
 import hu.tmx.mybooksapp.interfaces.BookDao;
 import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,18 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
 
     private BookDao bookDao;
+    private AuthorDao authorDao;
 
     @Autowired
     @Qualifier("BookDaoMem")
     public void setBookDao(BookDao bookDao) {
         this.bookDao = bookDao;
+    }
+
+    @Autowired
+    @Qualifier("AuthorDaoMem")
+    public void setBookDao(AuthorDao authorDao) {
+        this.authorDao = authorDao;
     }
 
     @RequestMapping(path = " ", method = RequestMethod.GET)
@@ -42,6 +50,7 @@ public class BookController {
     @RequestMapping(path = "/new", method = RequestMethod.GET)
     public String newBook(Model model){
         model.addAttribute("book", new Book());
+        model.addAttribute("authors", authorDao.getAllAuthor());
         return "view/newBook";
     }
 
