@@ -3,11 +3,13 @@ package hu.tmx.mybooksapp.service;
 import hu.tmx.mybooksapp.interfaces.BookDao;
 import hu.tmx.mybooksapp.model.BaseData;
 import hu.tmx.mybooksapp.model.Book;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Qualifier("BookDaoMem")
 public class BookDaoMem implements BookDao {
 
     @Override

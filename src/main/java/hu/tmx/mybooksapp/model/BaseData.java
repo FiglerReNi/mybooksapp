@@ -5,7 +5,7 @@ import java.util.List;
 public class BaseData {
 
     public static final List<Author> authors = List.of(
-            new Author(1, "Laura", "Leiner", 36),
+            new Author(1, "Leiner", "Laura", 36),
             new Author(2, "Sara", "Shepard", 44),
             new Author(3, "Cecily von", "Ziegesar", 51),
             new Author(4, "Stephenie", "Meyer", 47),

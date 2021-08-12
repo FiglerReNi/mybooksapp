@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MyBooksApp</title>
-
-
-</head>
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main.html}">
 <body>
-<span th:text="#{books}" />
-
+<div layout:fragment="content">
+    <div class="container pt-3">
+        <h3 class="text-center text-secondary">My all books with author</h3>
+        <br>
+        <div class="form-row">
+            <div class="form-group table-responsive">
+                <table class='table table-bordered table-hover'>
+                    <thead>
+                    <tr>
+                        <th class='border-secondary text-secondary text-center p-1'>Title</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Release Date</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Author</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Age of Author</th>
+                    </tr>
+                    </thead>
+                    <tbody class='border'>
+                        <tr th:each="book: ${books}">
+                            <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.model.Book"*/-->
+                            <td th:text="${book.title}" class='border-secondary text-secondary text-center p-1'></td>
+                            <td th:text="${book.releaseDate}" class='border-secondary text-secondary text-center p-1'></td>
+                            <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}" class='border-secondary text-secondary text-center p-1'></td>
+                            <td th:text="${book.author.age}" class='border-secondary text-secondary text-center p-1'></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
