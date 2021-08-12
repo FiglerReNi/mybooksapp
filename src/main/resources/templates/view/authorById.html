@@ -5,7 +5,7 @@
 <body>
 <div layout:fragment="content">
     <div class="container pt-3">
-        <h3 class="text-center text-secondary">All Authors</h3>
+        <h3 class="text-center text-secondary">Author</h3>
         <br>
         <div class="form-row">
             <div class="form-group table-responsive">
@@ -15,17 +15,14 @@
                         <th class='border-secondary text-secondary text-center p-1'>First name</th>
                         <th class='border-secondary text-secondary text-center p-1'>Last name</th>
                         <th class='border-secondary text-secondary text-center p-1'>Age</th>
-                        <th class='border-secondary text-secondary text-center p-1'>Details</th>
                     </tr>
                     </thead>
                     <tbody class='border'>
-                    <tr th:each="author: ${authors}">
+                    <tr>
                         <!--/*@thymesVar id="author" type="hu.tmx.mybooksapp.model.Author"*/-->
                         <td th:text="${author.firstName}" class='border-secondary text-secondary text-center p-1'></td>
                         <td th:text="${author.lastName}" class='border-secondary text-secondary text-center p-1'></td>
                         <td th:text="${author.age}" class='border-secondary text-secondary text-center p-1'></td>
-                        <td class='border-secondary text-white text-center p-1'>
-                            <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Click" th:id="${author.id}" name="detailsButtonA"></td>
                     </tr>
                     </tbody>
                 </table>

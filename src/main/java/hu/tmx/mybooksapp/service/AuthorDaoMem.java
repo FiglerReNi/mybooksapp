@@ -16,4 +16,12 @@ public class AuthorDaoMem implements AuthorDao {
     public List<Author> getAllAuthor() {
         return BaseData.authors;
     }
+
+    @Override
+    public Author getAuthorById(int id) {
+        return BaseData.authors.stream()
+                .filter(b -> b.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

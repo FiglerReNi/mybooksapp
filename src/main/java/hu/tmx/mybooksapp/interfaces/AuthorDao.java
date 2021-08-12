@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AuthorDao {
    List<Author> getAllAuthor();
+
+   Author getAuthorById(int id);
 }
