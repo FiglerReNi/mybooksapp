@@ -15,4 +15,8 @@ $(document).ready(function () {
     $('[name=detailsButtonA]').click(function (){
         window.open("/authors/"+ this.id, "_self")
     });
+
+    $('[name=newBookButton]').click(function (){
+        window.open("/books/new", "_self")
+    });
 });

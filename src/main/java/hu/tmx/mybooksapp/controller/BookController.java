@@ -1,13 +1,12 @@
 package hu.tmx.mybooksapp.controller;
 
 import hu.tmx.mybooksapp.interfaces.BookDao;
+import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -32,6 +31,18 @@ public class BookController {
     public String bookWithAuthorById(@PathVariable(value = "id") int id, Model model){
         model.addAttribute("book", bookDao.getBookWithAuthorById(id));
         return "view/bookWithAuthorById";
+    }
+
+    @PostMapping(" ")
+    public String saveNewBook(@ModelAttribute Book book){
+        //valami sikeres mentés is
+        return "index";
+    }
+
+    @RequestMapping(path = "/new", method = RequestMethod.GET)
+    public String newBook(Model model){
+        model.addAttribute("book", new Book());
+        return "view/newBook";
     }
 
 }

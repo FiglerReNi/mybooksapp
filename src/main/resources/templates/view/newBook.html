@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main.html}">
+<body>
+<form method="post" th:action="@{/books}">
+    <div class="col-md col-xl">
+        <label class="text-secondary font-weight-bolder" for="title">Title</label>
+        <input class="col-md-8 col-xl-8 text-info border-info form-control" type="text" name="title" id="title">
+    </div>
+    <div class="col-md col-xl">
+        <label class="text-info font-weight-bolder" for="releaseDate">Logstátusz dátum-tól:</label>
+        <input class="col-md-9 col-xl-9 text-info border-info form-control" type="text" name="releaseDate" id="releaseDate">
+    </div>
+    <div class="col-md col-xl">
+        <label class="text-info font-weight-bolder" for="author">Logstátusz dátum-tól:</label>
+        <input class="col-md-9 col-xl-9 text-info border-info form-control" type="text" name="author" id="author">
+    </div>
+</form>
+</body>
+</html>
