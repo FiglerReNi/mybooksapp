@@ -62,5 +62,4 @@ public class BookController {
         bookDao.delete(bookDao.getBookWithAuthorById(id));
         return "index";
     }
-
 }

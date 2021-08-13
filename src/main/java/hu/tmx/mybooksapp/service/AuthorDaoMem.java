@@ -5,7 +5,6 @@ import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.BaseData;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -41,5 +40,10 @@ public class AuthorDaoMem implements AuthorDao {
     @Override
     public void save(Author author) {
         BaseData.authors.add(author);
+    }
+
+    @Override
+    public void delete(Author author) {
+        BaseData.authors.remove(author);
     }
 }

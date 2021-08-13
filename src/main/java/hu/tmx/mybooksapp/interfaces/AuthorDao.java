@@ -1,7 +1,6 @@
 package hu.tmx.mybooksapp.interfaces;
 
 import hu.tmx.mybooksapp.model.Author;
-
 import java.util.List;
 
 public interface AuthorDao {
@@ -12,4 +11,6 @@ public interface AuthorDao {
    int getMaxId();
 
    void save(Author author);
+
+    void delete(Author authorById);
 }

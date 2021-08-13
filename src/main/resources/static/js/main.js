@@ -25,7 +25,13 @@ $(document).ready(function () {
     });
 
     $('[name=deleteButtonA]').click(function (){
-
+        $.ajax({
+            url: "authors/" + this.id,
+            type: "DELETE",
+            success: function (){
+                window.open("/", "_self")
+            }
+        });
     });
 
     $('[name=deleteButtonB]').click(function (){
@@ -37,6 +43,5 @@ $(document).ready(function () {
             }
         });
     });
-
 
 });

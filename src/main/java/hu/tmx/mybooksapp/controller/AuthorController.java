@@ -43,4 +43,11 @@ public class AuthorController {
         model.addAttribute("author", new Author());
         return "view/newAuthor";
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteAuthor(@PathVariable(value = "id") int id){
+        System.out.println("valamiiiii");
+        authorDao.delete(authorDao.getAuthorById(id));
+        return "index";
+    }
 }
