@@ -44,4 +44,25 @@ $(document).ready(function () {
         });
     });
 
+    $('[name=updateButtonA]').click(function (){
+        window.open("/authors/update/" + this.id, "_self")
+    });
+
+    $('#formAuthorUpdate').submit(function () {
+        return false;
+    });
+
+    $('[name=updateAuthorSubmit]').click(function (){
+        var data = $("#formAuthorUpdate").serializeArray();
+        $.ajax({
+            type: "PUT",
+            url: "authors/" + this.id,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (){
+                window.open("/", "_self")
+            }
+        });
+    });
+
 });

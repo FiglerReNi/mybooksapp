@@ -39,8 +39,15 @@ public class AuthorController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteAuthor(@PathVariable(value = "id") int id){;
+    public String deleteAuthor(@PathVariable(value = "id") int id){
         authorDao.delete(authorDao.getAuthorById(id));
+        return "index";
+    }
+
+    @PutMapping("/{id}")
+
+    public String updateAuthor(@PathVariable(value = "id") int id){
+
         return "index";
     }
 
@@ -49,6 +56,13 @@ public class AuthorController {
         model.addAttribute("author", new Author());
         return "view/newAuthor";
     }
+
+    @RequestMapping(path = "/update/{id}", method = RequestMethod.GET)
+    public String updateAuthor(Model model, @PathVariable(value = "id") int id){
+        model.addAttribute("authorUpdate", authorDao.getAuthorById(id));
+        return "view/updateAuthor";
+    }
+
 
 
 }
