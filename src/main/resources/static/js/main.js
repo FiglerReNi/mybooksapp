@@ -53,10 +53,14 @@ $(document).ready(function () {
     });
 
     $('[name=updateAuthorSubmit]').click(function (){
-        var data = $("#formAuthorUpdate").serializeArray();
+       data = {};
+       data["authorId"] = $("#authorId").val();
+       data["firstName"] = $("#firstName").val();
+       data["lastName"] = $("#lastName").val();
+       data["age"] = $("#age").val();
         $.ajax({
             type: "PUT",
-            url: "authors/" + this.id,
+            url: "../" + this.id,
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (){
