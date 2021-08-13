@@ -3,7 +3,6 @@ package hu.tmx.mybooksapp.service;
 import hu.tmx.mybooksapp.interfaces.AuthorDao;
 import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.BaseData;
-import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
