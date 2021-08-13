@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,10 +23,23 @@ public class BookDaoMem implements BookDao {
     }
 
     @Override
-    public Book getBookWithAuthorById(int id) {
+    public Book getBookWithAuthorById(int id)  {
         return BaseData.books.stream()
                         .filter(b -> b.getId() == id)
                         .findFirst()
-                        .orElse(null);
+                        .orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
+    }
+
+    @Override
+    public int getMaxId() {
+        return BaseData.books.stream()
+                .mapToInt(Book::getId)
+                .max()
+                .orElseThrow(()->new NoSuchElementException("Maximum id not found."));
+    }
+
+    @Override
+    public void save(Book book) {
+        BaseData.books.add(book);
     }
 }

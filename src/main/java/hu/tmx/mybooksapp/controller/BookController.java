@@ -2,6 +2,7 @@ package hu.tmx.mybooksapp.controller;
 
 import hu.tmx.mybooksapp.interfaces.AuthorDao;
 import hu.tmx.mybooksapp.interfaces.BookDao;
+import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,8 +43,10 @@ public class BookController {
     }
 
     @PostMapping(" ")
-    public String saveNewBook(@ModelAttribute Book book){
-        //valami sikeres mentés is
+    public String saveNewBook(@RequestParam("title") String title, @RequestParam("releaseDate") String releaseDate, @RequestParam("authorId") String authorId){
+        Author authorOfBook = authorDao.getAuthorById(Integer.parseInt(authorId));
+        Book book = new Book((bookDao.getMaxId()+1), title, Integer.parseInt(releaseDate), authorOfBook);
+        bookDao.save(book);
         return "index";
     }
 

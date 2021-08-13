@@ -7,4 +7,8 @@ public interface BookDao {
    List<Book> getAllBooksWithAuthor();
 
    Book getBookWithAuthorById(int id);
+
+   int getMaxId();
+
+   void save(Book book);
 }
