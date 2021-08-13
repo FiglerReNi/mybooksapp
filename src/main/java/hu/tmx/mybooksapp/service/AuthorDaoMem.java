@@ -3,6 +3,7 @@ package hu.tmx.mybooksapp.service;
 import hu.tmx.mybooksapp.interfaces.AuthorDao;
 import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.BaseData;
+import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,18 @@ public class AuthorDaoMem implements AuthorDao {
                 .filter(b -> b.getId() == id)
                 .findFirst()
                 .orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
+    }
+
+    @Override
+    public int getMaxId() {
+        return BaseData.authors.stream()
+                .mapToInt(Author::getId)
+                .max()
+                .orElseThrow(()->new NoSuchElementException("Maximum id not found."));
+    }
+
+    @Override
+    public void save(Author author) {
+        BaseData.authors.add(author);
     }
 }

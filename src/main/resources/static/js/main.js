@@ -19,4 +19,8 @@ $(document).ready(function () {
     $('[name=newBookButton]').click(function (){
         window.open("/books/new", "_self")
     });
+
+    $('[name=newAuthorButton]').click(function (){
+        window.open("/authors/new", "_self")
+    });
 });

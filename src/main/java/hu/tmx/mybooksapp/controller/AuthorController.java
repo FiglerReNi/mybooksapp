@@ -1,13 +1,13 @@
 package hu.tmx.mybooksapp.controller;
 
 import hu.tmx.mybooksapp.interfaces.AuthorDao;
+import hu.tmx.mybooksapp.model.Author;
+import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/authors")
@@ -31,5 +31,17 @@ public class AuthorController {
     public String bookWithAuthorById(@PathVariable(value = "id") int id, Model model){
         model.addAttribute("author", authorDao.getAuthorById(id));
         return "view/authorById";
+    }
+
+    @PostMapping(" ")
+    public String saveNewAuthor(@ModelAttribute Author author){
+        authorDao.save(new Author((authorDao.getMaxId()+1), author.getFirstName(), author.getLastName(), author.getAge()));
+        return "index";
+    }
+
+    @RequestMapping(path = "/new", method = RequestMethod.GET)
+    public String newBook(Model model){
+        model.addAttribute("author", new Author());
+        return "view/newAuthor";
     }
 }

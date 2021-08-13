@@ -5,14 +5,16 @@ public class Author {
     private int id;
     private String firstName;
     private String lastName;
-    private int age;
+    private Integer age;
 
-    public Author(int id, String firstName, String lastName, int age) {
+    public Author(int id, String firstName, String lastName, Integer age) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
     }
+
+    public Author() {}
 
     public int getId() {
         return id;
@@ -38,7 +40,7 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 

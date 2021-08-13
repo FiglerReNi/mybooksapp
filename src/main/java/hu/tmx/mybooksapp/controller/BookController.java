@@ -52,7 +52,6 @@ public class BookController {
 
     @RequestMapping(path = "/new", method = RequestMethod.GET)
     public String newBook(Model model){
-        model.addAttribute("book", new Book());
         model.addAttribute("authors", authorDao.getAllAuthor());
         return "view/newBook";
     }
