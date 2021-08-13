@@ -4,7 +4,6 @@ import hu.tmx.mybooksapp.interfaces.AuthorDao;
 import hu.tmx.mybooksapp.model.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,9 +44,10 @@ public class AuthorController {
         return "index";
     }
 
-    @PutMapping(value = "/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}")
     public String updateAuthor(@PathVariable(value = "id") int id, @RequestBody Author author){
-        authorDao.update(author);
+        authorDao.delete(authorDao.getAuthorById(id));
+        authorDao.save(author);
         return "index";
     }
 

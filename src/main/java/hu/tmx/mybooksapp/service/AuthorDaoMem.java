@@ -46,9 +46,4 @@ public class AuthorDaoMem implements AuthorDao {
     public void delete(Author author) {
         BaseData.authors.remove(author);
     }
-
-    @Override
-    public void update(Author author) {
-        BaseData.authors.set(author.getId(), author);
-    }
 }

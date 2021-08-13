@@ -13,6 +13,4 @@ public interface AuthorDao {
    void save(Author author);
 
     void delete(Author authorById);
-
-    void update(Author author);
 }
