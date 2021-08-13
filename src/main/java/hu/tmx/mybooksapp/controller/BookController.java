@@ -56,4 +56,11 @@ public class BookController {
         return "view/newBook";
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteBook(@PathVariable(value = "id") int id){
+        System.out.println("valamiiiii");
+        bookDao.delete(bookDao.getBookWithAuthorById(id));
+        return "index";
+    }
+
 }

@@ -42,4 +42,9 @@ public class BookDaoMem implements BookDao {
     public void save(Book book) {
         BaseData.books.add(book);
     }
+
+    @Override
+    public void delete(Book book) {
+        BaseData.books.remove(book);
+    }
 }

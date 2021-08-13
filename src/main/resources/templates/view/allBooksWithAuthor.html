@@ -16,6 +16,8 @@
                         <th class='border-secondary text-secondary text-center p-1'>Release Date</th>
                         <th class='border-secondary text-secondary text-center p-1'>Author</th>
                         <th class='border-secondary text-secondary text-center p-1'>Details</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Update</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Delete</th>
                     </tr>
                     </thead>
                     <tbody class='border'>
@@ -25,7 +27,11 @@
                             <td th:text="${book.releaseDate}" class='border-secondary text-secondary text-center p-1'></td>
                             <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}" class='border-secondary text-secondary text-center p-1'></td>
                             <td class='border-secondary text-white text-center p-1'>
-                                <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Click" th:id="${book.id}" name="detailsButtonB"></td>
+                                <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Details" th:id="${book.id}" name="detailsButtonB"></td>
+                            <td class='border-secondary text-white text-center p-1'>
+                                <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Update" th:id="${book.id}" name="updateButtonB"></td>
+                            <td class='border-secondary text-white text-center p-1'>
+                                <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Delete" th:id="${book.id}" name="deleteButtonB"></td>
                         </tr>
                     </tbody>
                 </table>

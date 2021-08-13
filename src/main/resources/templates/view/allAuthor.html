@@ -16,6 +16,8 @@
                         <th class='border-secondary text-secondary text-center p-1'>Last name</th>
                         <th class='border-secondary text-secondary text-center p-1'>Age</th>
                         <th class='border-secondary text-secondary text-center p-1'>Details</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Update</th>
+                        <th class='border-secondary text-secondary text-center p-1'>Delete</th>
                     </tr>
                     </thead>
                     <tbody class='border'>
@@ -25,7 +27,11 @@
                         <td th:text="${author.lastName}" class='border-secondary text-secondary text-center p-1'></td>
                         <td th:text="${author.age}" class='border-secondary text-secondary text-center p-1'></td>
                         <td class='border-secondary text-white text-center p-1'>
-                            <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Click" th:id="${author.id}" name="detailsButtonA"></td>
+                            <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Details" th:id="${author.id}" name="detailsButtonA"></td>
+                        <td class='border-secondary text-white text-center p-1'>
+                            <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Update" th:id="${author.id}" name="updateButtonA"></td>
+                        <td class='border-secondary text-white text-center p-1'>
+                            <input type="button" class="btn btn-outline-secondary btn-light align-middle py-0" value="Delete" th:id="${author.id}" name="deleteButtonA"></td>
                     </tr>
                     </tbody>
                 </table>

@@ -23,4 +23,20 @@ $(document).ready(function () {
     $('[name=newAuthorButton]').click(function (){
         window.open("/authors/new", "_self")
     });
+
+    $('[name=deleteButtonA]').click(function (){
+
+    });
+
+    $('[name=deleteButtonB]').click(function (){
+        $.ajax({
+            url: "books/" + this.id,
+            type: "DELETE",
+            success: function (){
+                window.open("/", "_self")
+            }
+        });
+    });
+
+
 });
