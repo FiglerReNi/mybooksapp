@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 @RequestMapping(path = "/books")
 public class BookController {
@@ -56,11 +55,23 @@ public class BookController {
         return "index";
     }
 
+    @PutMapping(value = "/{id}")
+    public String updateBook(@PathVariable(value = "id") int id, @RequestBody Book book){
+        bookDao.delete(bookDao.getBookWithAuthorById(id));
+        bookDao.save(book);
+        return "index";
+    }
+
     @RequestMapping(path = "/new", method = RequestMethod.GET)
     public String newBook(Model model){
         model.addAttribute("authors", authorDao.getAllAuthor());
         return "view/newBook";
     }
 
-
+    @RequestMapping(path = "/update/{id}", method = RequestMethod.GET)
+    public String updateAuthor(Model model, @PathVariable(value = "id") int id){
+        model.addAttribute("book", bookDao.getBookWithAuthorById(id));
+        model.addAttribute("authors", authorDao.getAllAuthor());
+        return "view/updateBook";
+    }
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main.html}">
+<body>
+<div layout:fragment="content">
+  <div class="py-3 px-5">
+    <h3 class="text-center text-secondary">Update book</h3>
+    <br>
+    <form method="post" action=""  id="formBookUpdate">
+      <input type="hidden" name="bookId" id="bookId" th:value="${book.id}">
+      <div class="row">
+        <div class="col-md-3 col-xl-3"></div>
+        <div class="col-md-2 col-xl-2 text-end">
+          <label class="text-secondary font-weight-bolder" for="title">Title</label>
+        </div>
+        <div class="col-md-4 col-xl-4">
+          <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.model.Book"*/-->
+          <input class="text-secondary border-secondary form-control p-1" type="text" name="title" id="title" th:value="${book.title}" required>
+        </div>
+        <div class="col-md-3 col-xl-3"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-3 col-xl-3"></div>
+        <div class="col-md-2 col-xl-2 text-end">
+          <label class="text-secondary font-weight-bolder" for="releaseDate">Release Date</label>
+        </div>
+        <div class="col-md-4 col-xl-4">
+          <input class="col-md-9 col-xl-9 text-secondary border-secondary form-control p-1" type="text" name="releaseDate" id="releaseDate" th:value="${book.releaseDate}" required>
+        </div>
+        <div class="col-md-3 col-xl-3"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-3 col-xl-3"></div>
+        <div class="col-md-2 col-xl-2 text-end">
+          <label class="text-secondary font-weight-bolder" for="authorId">Author</label>
+        </div>
+        <div class="col-md-4 col-xl-4">
+          <select class="col-md-9 col-xl-9 text-secondary border-secondary form-control p-1" name="authorId" id="authorId" >
+            <!--/*@thymesVar id="bookAuthor" type="hu.tmx.mybooksapp.model.Author"*/-->
+            <option th:each="bookAuthor:${authors}"  th:selected="(${bookAuthor.id} == ${book.author.id})"
+                    th:value="${bookAuthor.id} + '|' + ${bookAuthor.firstName}  +'|' + ${bookAuthor.lastName} + '|' + ${bookAuthor.age}"
+                    th:text="${bookAuthor.firstName} + ' ' + ${bookAuthor.lastName}"></option>
+          </select>
+        </div>
+        <div class="col-md-3 col-xl-3"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-3 col-xl-3"></div>
+        <div class="col-md-2 col-xl-2"></div>
+        <div class="col-md-4 col-xl-4">
+          <input type="submit" class="btn btn-outline-secondary btn-light align-middle py-1" value="Save" th:id="${book.id}" name="updateBookSubmit"/>
+        </div>
+        <div class="col-md-3 col-xl-3"></div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -62,7 +62,4 @@ public class AuthorController {
         model.addAttribute("authorUpdate", authorDao.getAuthorById(id));
         return "view/updateAuthor";
     }
-
-
-
 }

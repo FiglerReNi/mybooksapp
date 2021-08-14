@@ -48,7 +48,15 @@ $(document).ready(function () {
         window.open("/authors/update/" + this.id, "_self")
     });
 
+    $('[name=updateButtonB]').click(function () {
+        window.open("/books/update/" + this.id, "_self")
+    });
+
     $('#formAuthorUpdate').submit(function () {
+        return false;
+    });
+
+    $('#formBookUpdate').submit(function () {
         return false;
     });
 
@@ -63,6 +71,30 @@ $(document).ready(function () {
             url: "../" + this.id,
             contentType: "application/json",
             data: JSON.stringify(data),
+            success: function () {
+                window.open("/", "_self")
+            }
+        });
+    });
+
+    $('[name=updateBookSubmit]').click(function () {
+        let author = $('#authorId').val().split("|");
+        alert(author[0]);
+        let authorData = {};
+        let bookData = {};
+        authorData["id"] = author[0];
+        authorData["firstName"] = author[1];
+        authorData["lastName"] = author[2];
+        authorData["age"] = author[3];
+        bookData["id"] = $("#bookId").val();
+        bookData["title"] = $("#title").val();
+        bookData["releaseDate"] = $("#releaseDate").val();
+        bookData["author"] = authorData;
+        $.ajax({
+            type: "PUT",
+            url: "../" + this.id,
+            contentType: "application/json",
+            data: JSON.stringify(bookData),
             success: function () {
                 window.open("/", "_self")
             }
