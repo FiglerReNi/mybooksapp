@@ -79,7 +79,6 @@ $(document).ready(function () {
 
     $('[name=updateBookSubmit]').click(function () {
         let author = $('#authorId').val().split("|");
-        alert(author[0]);
         let authorData = {};
         let bookData = {};
         authorData["id"] = author[0];
