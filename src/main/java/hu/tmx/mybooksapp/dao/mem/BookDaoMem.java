@@ -1,49 +1,49 @@
-package hu.tmx.mybooksapp.service;
+package hu.tmx.mybooksapp.dao.mem;
 
-import hu.tmx.mybooksapp.interfaces.BookDao;
-import hu.tmx.mybooksapp.model.BaseData;
+import hu.tmx.mybooksapp.dao.BookDao;
 import hu.tmx.mybooksapp.model.Book;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-@Service
-@Qualifier("BookDaoMem")
+@Component
 public class BookDaoMem implements BookDao {
 
+    public static List<Book> books = new ArrayList<>();
+
     @Override
-    public List<Book> getAllBooksWithAuthor() {
-        return BaseData.books.stream()
+    public List<Book> getAllBooksWithAuthorFromList() {
+        return books.stream()
                 .sorted(Comparator.comparing(Book::getTitle))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Book getBookWithAuthorById(int id)  {
-        return BaseData.books.stream()
+    public Book getBookWithAuthorByIdFromList(int id)  {
+        return books.stream()
                         .filter(b -> b.getId() == id)
                         .findFirst()
                         .orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
     }
 
     @Override
-    public int getMaxId() {
-        return BaseData.books.stream()
+    public int getMaxIdFromList() {
+        return books.stream()
                 .mapToInt(Book::getId)
                 .max()
                 .orElseThrow(()->new NoSuchElementException("Maximum id not found."));
     }
 
     @Override
-    public void save(Book book) {
-        BaseData.books.add(book);
+    public void saveToList(Book book) {
+        books.add(book);
     }
 
     @Override
-    public void delete(Book book) {
-        BaseData.books.remove(book);
+    public void deleteFromList(Book book) {
+        books.remove(book);
     }
 }

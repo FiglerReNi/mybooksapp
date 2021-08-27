@@ -1,4 +1,4 @@
-package hu.tmx.mybooksapp.util;
+package hu.tmx.mybooksapp.exception;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
