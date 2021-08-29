@@ -58,8 +58,7 @@ public class BookController {
 
     @PutMapping(value = "/{id}")
     public String updateBook(@PathVariable(value = "id") int id, @RequestBody Book book){
-        bookService.delete(bookService.getBookWithAuthorById(id));
-        bookService.save(book);
+        bookService.update(id, book);
         return "index";
     }
 
@@ -70,7 +69,7 @@ public class BookController {
     }
 
     @RequestMapping(path = "/update/{id}", method = RequestMethod.GET)
-    public String updateAuthor(Model model, @PathVariable(value = "id") int id){
+    public String updateBookView(Model model, @PathVariable(value = "id") int id){
         model.addAttribute("book", bookService.getBookWithAuthorById(id));
         model.addAttribute("authors", authorService.getAllAuthor());
         return "view/updateBook";

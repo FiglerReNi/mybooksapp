@@ -3,10 +3,7 @@ package hu.tmx.mybooksapp.dao.mem;
 import hu.tmx.mybooksapp.dao.BookDao;
 import hu.tmx.mybooksapp.model.Book;
 import org.springframework.stereotype.Component;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -45,5 +42,11 @@ public class BookDaoMem implements BookDao {
     @Override
     public void deleteFromList(Book book) {
         books.remove(book);
+    }
+
+    @Override
+    public void updateList(int id, Book book) {
+        int bookIndex = books.indexOf(getBookWithAuthorByIdFromList(id));
+        books.set(bookIndex, book);
     }
 }

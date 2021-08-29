@@ -2,6 +2,7 @@ package hu.tmx.mybooksapp.service.impl;
 
 import hu.tmx.mybooksapp.dao.AuthorDao;
 import hu.tmx.mybooksapp.model.Author;
+import hu.tmx.mybooksapp.model.Book;
 import hu.tmx.mybooksapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,4 +48,10 @@ public class AuthorServiceImpl implements AuthorService {
     public void update(int id, Author author) {
         authorDao.updateList(id, author);
     }
+
+    @Override
+    public void addOneBook(Book book){
+        authorDao.addOneBookToList(book);
+    }
+
 }

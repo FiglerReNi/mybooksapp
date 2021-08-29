@@ -26,6 +26,20 @@
                     </tr>
                     </tbody>
                 </table>
+                <table class='table table-bordered table-hover'>
+                    <thead>
+
+                    <tr>
+                        <th class='border-secondary text-secondary text-center p-1' colspan="3">Books</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="book: ${author.books}">
+                        <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.model.Book"*/-->
+                        <td th:text="${book.title}" class='border-secondary text-secondary text-center p-1' colspan="3"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

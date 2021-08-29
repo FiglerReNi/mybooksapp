@@ -25,8 +25,9 @@ public class AuthorController {
     }
 
     @GetMapping(path = "/{id}")
-    public String bookWithAuthorById(@PathVariable(value = "id") int id, Model model){
+    public String authorById(@PathVariable(value = "id") int id, Model model){
         model.addAttribute("author", authorService.getAuthorById(id));
+        System.out.println(authorService.getAuthorById(id));
         return "view/authorById";
     }
 
@@ -48,9 +49,7 @@ public class AuthorController {
 
     @PutMapping(value = "/{id}")
     public String updateAuthor(@PathVariable(value = "id") int id, @RequestBody Author author){
-        System.out.println(author);
         authorService.update(id, author);
-
         return "index";
     }
 
@@ -61,7 +60,7 @@ public class AuthorController {
     }
 
     @GetMapping(path = "/update/{id}")
-    public String updateAuthor(Model model, @PathVariable(value = "id") int id){
+    public String updateAuthorView(Model model, @PathVariable(value = "id") int id){
         model.addAttribute("authorUpdate", authorService.getAuthorById(id));
         return "view/updateAuthor";
     }

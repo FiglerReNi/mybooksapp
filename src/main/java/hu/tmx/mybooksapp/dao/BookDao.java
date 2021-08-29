@@ -13,4 +13,6 @@ public interface BookDao {
    void saveToList(Book book);
 
    void deleteFromList(Book book);
+
+   void updateList(int id, Book book);
 }

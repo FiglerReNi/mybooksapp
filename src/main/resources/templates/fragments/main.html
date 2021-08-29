@@ -13,6 +13,11 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
+    <div layout:fragment="title">
+        <div class="container pt-5">
+            <h1 class="text-center"><a th:href="@{/}"> My Books Application</a></h1>
+        </div>
+    </div>
     <div layout:fragment="content"></div>
 
     <script th:src="@{/js/jquery.min.js}"></script>

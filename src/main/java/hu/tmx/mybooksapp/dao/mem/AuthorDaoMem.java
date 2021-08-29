@@ -2,6 +2,7 @@ package hu.tmx.mybooksapp.dao.mem;
 
 import hu.tmx.mybooksapp.dao.AuthorDao;
 import hu.tmx.mybooksapp.model.Author;
+import hu.tmx.mybooksapp.model.Book;
 import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -47,7 +48,10 @@ public class AuthorDaoMem implements AuthorDao {
     @Override
     public void updateList(int id, Author author) {
         int authorIndex = authors.indexOf(getAuthorByIdFromList(id));
-        System.out.println(authorIndex);
         authors.set(authorIndex, author);
+    }
+
+    public void addOneBookToList(Book book){
+        book.getAuthor().addBook(book);
     }
 }

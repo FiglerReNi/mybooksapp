@@ -3,23 +3,28 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main.html}">
 <body>
-<div layout:fragment="content">
+<div layout:fragment="title">
     <div class="container pt-5">
         <h1 class="text-center">My Books Application</h1>
         <br>
-        <div class="form-row">
-            <div class="form-group text-center p-1">
-                <input type="button" class="btn btn-outline-danger btn-light align-middle" value="Books" name="booksButton">
-            </div>
-            <div class="form-group text-center p-1">
-                <input type="button" class="btn btn-outline-info btn-light align-middle" value="Authors" name="authorsButton">
-            </div>
-            <div class="form-group text-center p-1">
-                <input type="button" class="btn btn-outline-warning btn-light align-middle" value="New Book" name="newBookButton">
-            </div>
-            <div class="form-group text-center p-1">
-                <input type="button" class="btn btn-outline-success btn-light align-middle"  value="New Author" name="newAuthorButton">
-            </div>
+    </div>
+</div>
+<div layout:fragment="content">
+    <div class="form-row">
+        <div class="form-group text-center p-1">
+            <input type="button" class="btn btn-outline-danger btn-light align-middle" value="Books" name="booksButton">
+        </div>
+        <div class="form-group text-center p-1">
+            <input type="button" class="btn btn-outline-info btn-light align-middle" value="Authors"
+                   name="authorsButton">
+        </div>
+        <div class="form-group text-center p-1">
+            <input type="button" class="btn btn-outline-warning btn-light align-middle" value="New Book"
+                   name="newBookButton">
+        </div>
+        <div class="form-group text-center p-1">
+            <input type="button" class="btn btn-outline-success btn-light align-middle" value="New Author"
+                   name="newAuthorButton">
         </div>
     </div>
 </div>

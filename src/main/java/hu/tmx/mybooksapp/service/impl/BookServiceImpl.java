@@ -5,7 +5,6 @@ import hu.tmx.mybooksapp.model.Book;
 import hu.tmx.mybooksapp.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -42,4 +41,10 @@ public class BookServiceImpl implements BookService {
     public void delete(Book book) {
         bookDao.deleteFromList(book);
     }
+
+    @Override
+    public void update(int id, Book book) {
+        bookDao.updateList(id, book);
+    }
+
 }
