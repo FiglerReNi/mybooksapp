@@ -27,7 +27,6 @@ public class AuthorController {
     @GetMapping(path = "/{id}")
     public String authorById(@PathVariable(value = "id") int id, Model model){
         model.addAttribute("author", authorService.getAuthorById(id));
-        System.out.println(authorService.getAuthorById(id));
         return "view/authorById";
     }
 

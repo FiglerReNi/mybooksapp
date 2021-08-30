@@ -4,8 +4,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -15,6 +14,7 @@ public class Author {
     private String firstName;
     private String lastName;
     private Integer age;
+    @ToString.Exclude
     private List<Book> books;
 
     public void addBook(Book book) {
