@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path = "/books")
+@RequestMapping(path = "/view/books")
 public class BookController {
 
     private BookService bookService;

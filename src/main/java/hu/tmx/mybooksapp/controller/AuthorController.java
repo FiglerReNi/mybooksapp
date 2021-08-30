@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path = "/authors")
+@RequestMapping(path = "/view/authors")
 public class AuthorController {
 
     private AuthorService authorService;
