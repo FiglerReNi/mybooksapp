@@ -66,4 +66,17 @@ public class BookRestController {
                 "message", "book saved"));
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book){
+        Book updatedBook =  Book.builder()
+                .id(id)
+                .title(book.getTitle())
+                .releaseDate(book.getReleaseDate())
+                .author(authorService.getAuthorById(book.getAuthor().getId())).build();
+        bookService.update(id, updatedBook);
+
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", HttpStatus.OK.value(),
+                "message", "book updated"));
+    }
 }

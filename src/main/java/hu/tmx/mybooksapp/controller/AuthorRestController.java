@@ -58,4 +58,17 @@ public class AuthorRestController {
                 "message", "author saved"));
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateAuthor(@PathVariable(value = "id") int id,@Valid @RequestBody Author author){
+        Author updatedAuthor = Author.builder()
+                .id(id)
+                .firstName(author.getFirstName())
+                .lastName(author.getLastName())
+                .age(author.getAge()).build();
+        authorService.update(id, updatedAuthor);
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", HttpStatus.OK.value(),
+                "message", "author updated"));
+    }
+
 }
