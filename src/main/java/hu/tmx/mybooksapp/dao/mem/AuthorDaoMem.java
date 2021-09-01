@@ -48,7 +48,14 @@ public class AuthorDaoMem implements AuthorDao {
     @Override
     public void updateList(int id, Author author) {
         int authorIndex = authors.indexOf(getAuthorByIdFromList(id));
-        authors.set(authorIndex, author);
+        Author oldAuthor = getAuthorByIdFromList(id);
+        Author updatedAuthor = Author.builder()
+                .id(id)
+                .firstName(author.getFirstName())
+                .lastName(author.getLastName())
+                .age(author.getAge())
+                .books(oldAuthor.getBooks()).build();
+        authors.set(authorIndex, updatedAuthor);
     }
 
     public void addOneBookToList(Book book){
