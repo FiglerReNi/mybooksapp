@@ -61,7 +61,7 @@ $(document).ready(function () {
     });
 
     $('[name=updateAuthorSubmit]').click(function () {
-        if(fieldValidation($("#firstName").val()) && $("#lastName").val() && $("#age").val()) {
+        if(fieldValidation($("#firstName").val()) && fieldValidation($("#lastName").val()) && fieldValidation($("#age").val())) {
             let data = {};
             data["id"] = $("#authorId").val();
             data["firstName"] = $("#firstName").val();
@@ -80,7 +80,7 @@ $(document).ready(function () {
     });
 
     $('[name=updateBookSubmit]').click(function () {
-        if(fieldValidation($("#bookId").val()) && $("#title").val() && $("#releaseDate").val()) {
+        if(fieldValidation($("#bookId").val()) && fieldValidation($("#title").val()) && fieldValidation($("#releaseDate").val())) {
             let author = $('#authorId').val().split("|");
             let authorData = {};
             let bookData = {};
