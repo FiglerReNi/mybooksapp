@@ -80,4 +80,9 @@ public class AuthorDaoMem implements AuthorDao {
     public void addOneBookToList(Book book){
         book.getAuthor().addBook(book);
     }
+
+    @Override
+    public void saveToListFirst(Author author) {
+        saveToList(author);
+    }
 }

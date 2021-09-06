@@ -15,4 +15,6 @@ public interface BookDao {
    void deleteFromList(Book book);
 
    void updateList(int id, Book book);
+
+   void saveToListFirst(Book book);
 }

@@ -2,6 +2,8 @@ package hu.tmx.mybooksapp.dao.mem;
 
 import hu.tmx.mybooksapp.dao.BookDao;
 import hu.tmx.mybooksapp.model.Book;
+import hu.tmx.mybooksapp.service.AuthorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,6 +12,13 @@ import java.util.stream.Collectors;
 public class BookDaoMem implements BookDao {
 
     public static List<Book> books = new ArrayList<>();
+
+    private AuthorService authorService;
+
+    @Autowired
+    public void setAuthorService(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @Override
     public List<Book> getAllBooksWithAuthorFromList() {
@@ -48,5 +57,11 @@ public class BookDaoMem implements BookDao {
     public void updateList(int id, Book book) {
         int bookIndex = books.indexOf(getBookWithAuthorByIdFromList(id));
         books.set(bookIndex, book);
+    }
+
+    @Override
+    public void saveToListFirst(Book book) {
+        books.add(book);
+        authorService.addOneBook(book);
     }
 }

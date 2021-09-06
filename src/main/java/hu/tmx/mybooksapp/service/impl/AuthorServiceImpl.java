@@ -35,9 +35,15 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public void saveFirst(Author author) {
+        authorDao.saveToListFirst(author);
+    }
+
+    @Override
     public void save(Author author) {
         authorDao.saveToList(author);
     }
+
 
     @Override
     public void delete(Author authorById) {

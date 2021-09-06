@@ -1,5 +1,9 @@
 package hu.tmx.mybooksapp.exception;
 
+import hu.tmx.mybooksapp.controller.AuthorController;
+import hu.tmx.mybooksapp.controller.AuthorRestController;
+import hu.tmx.mybooksapp.controller.BookController;
+import hu.tmx.mybooksapp.controller.BookRestController;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +19,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 
-@ControllerAdvice
+@ControllerAdvice(assignableTypes = {AuthorRestController.class, BookRestController.class})
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ListItemNotFoundException.class)

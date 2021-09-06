@@ -3,6 +3,7 @@ package hu.tmx.mybooksapp.dao;
 import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface AuthorDao {
@@ -19,4 +20,6 @@ public interface AuthorDao {
    void updateList(int id, Author author);
 
     void addOneBookToList(Book book);
+
+    void saveToListFirst(Author author);
 }
