@@ -7,7 +7,6 @@ import hu.tmx.mybooksapp.service.BookService;
 import hu.tmx.mybooksapp.util.DBInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component

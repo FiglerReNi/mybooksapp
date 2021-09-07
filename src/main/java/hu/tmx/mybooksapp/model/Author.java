@@ -23,7 +23,6 @@ public class Author {
     @NotNull
     @Positive
     private Integer age;
-    //    @JsonIgnore
     @ToString.Exclude
     private List<Book> books;
 

@@ -1,9 +1,7 @@
 package hu.tmx.mybooksapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -23,6 +21,7 @@ public class Book {
     @DecimalMin("1000")
     @DecimalMax("9999")
     private int releaseDate;
+    @JsonIgnore
     @Valid
     private Author author;
 
