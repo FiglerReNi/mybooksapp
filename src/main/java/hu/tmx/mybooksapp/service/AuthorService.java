@@ -13,6 +13,8 @@ public interface AuthorService {
 
     int getMaxId();
 
+    void saveFirst(Author author);
+
     void save(Author author);
 
     void delete(Author authorById);

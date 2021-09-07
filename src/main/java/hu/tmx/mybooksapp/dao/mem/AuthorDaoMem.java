@@ -52,6 +52,9 @@ public class AuthorDaoMem implements AuthorDao {
     @Override
     public void deleteFromList(Author author) {
         authors.remove(author);
+        bookService.getAllBooksWithAuthor().stream()
+                .filter(book -> book.getAuthor().getId() == author.getId())
+                .forEach(b -> bookService.delete(b));
     }
 
     @Override
@@ -79,5 +82,10 @@ public class AuthorDaoMem implements AuthorDao {
 
     public void addOneBookToList(Book book){
         book.getAuthor().addBook(book);
+    }
+
+    @Override
+    public void saveToListFirst(Author author) {
+        saveToList(author);
     }
 }

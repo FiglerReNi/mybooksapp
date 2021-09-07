@@ -27,15 +27,11 @@ public class DBInitializerImpl implements DBInitializer {
 
     @Override
     public void authorInitializer(List<Author> authors) {
-        authors.forEach(author -> authorService.save(author));
+        authors.forEach(author -> authorService.saveFirst(author));
     }
 
     @Override
     public void bookInitializer(List<Book> books) {
-        books.forEach(book -> {
-                    bookService.save(book);
-                    authorService.addOneBook(book);
-                }
-        );
+        books.forEach(book -> bookService.saveFirst(book));
     }
 }

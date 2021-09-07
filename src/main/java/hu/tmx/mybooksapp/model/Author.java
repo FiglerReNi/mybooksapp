@@ -22,8 +22,8 @@ public class Author {
     @NotNull
     @Positive
     private Integer age;
-    @JsonIgnore
     @ToString.Exclude
+    @JsonIgnore
     private List<Book> books;
 
     public void addBook(Book book) {
