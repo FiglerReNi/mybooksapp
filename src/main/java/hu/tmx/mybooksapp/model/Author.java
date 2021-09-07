@@ -2,6 +2,7 @@ package hu.tmx.mybooksapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+
 import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Author {
     @NotNull
     @Positive
     private Integer age;
-//    @JsonIgnore
+    //    @JsonIgnore
     @ToString.Exclude
     private List<Book> books;
 

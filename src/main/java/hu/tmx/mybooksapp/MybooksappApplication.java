@@ -4,7 +4,6 @@ import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
 import hu.tmx.mybooksapp.service.AuthorService;
 import hu.tmx.mybooksapp.util.DBInitializer;
-import hu.tmx.mybooksapp.util.conn.JdbcConn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

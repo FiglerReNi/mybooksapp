@@ -5,6 +5,7 @@ import hu.tmx.mybooksapp.model.Book;
 import hu.tmx.mybooksapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,11 +29,11 @@ public class BookDaoMem implements BookDao {
     }
 
     @Override
-    public Book getBookWithAuthorByIdFromList(int id)  {
+    public Book getBookWithAuthorByIdFromList(int id) {
         return books.stream()
-                        .filter(b -> b.getId() == id)
-                        .findFirst()
-                        .orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
+                .filter(b -> b.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException(id + ". id doesn't exists."));
     }
 
     @Override
@@ -40,7 +41,7 @@ public class BookDaoMem implements BookDao {
         return books.stream()
                 .mapToInt(Book::getId)
                 .max()
-                .orElseThrow(()->new NoSuchElementException("Maximum id not found."));
+                .orElseThrow(() -> new NoSuchElementException("Maximum id not found."));
     }
 
     @Override

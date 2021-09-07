@@ -33,19 +33,19 @@ public class BookRestController {
 
     @GetMapping(path = " ")
     public List<Book> allBooksWithAuthor() throws ListItemNotFoundException {
-        if(bookService.getAllBooksWithAuthor().isEmpty()){
-           throw new ListItemNotFoundException();
+        if (bookService.getAllBooksWithAuthor().isEmpty()) {
+            throw new ListItemNotFoundException();
         }
         return bookService.getAllBooksWithAuthor();
     }
 
     @GetMapping(path = "/{id}")
-    public Book bookWithAuthorById(@PathVariable(value = "id") int id){
+    public Book bookWithAuthorById(@PathVariable(value = "id") int id) {
         return bookService.getBookWithAuthorById(id);
     }
 
-    @DeleteMapping(path="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> deleteBook(@PathVariable(value = "id") int id){
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> deleteBook(@PathVariable(value = "id") int id) {
         bookService.delete(bookService.getBookWithAuthorById(id));
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "status", HttpStatus.OK.value(),
@@ -53,9 +53,9 @@ public class BookRestController {
     }
 
     @PostMapping(" ")
-    public ResponseEntity<Object> saveNewBook(@Valid @RequestBody Book book){
+    public ResponseEntity<Object> saveNewBook(@Valid @RequestBody Book book) {
         Book newBook = Book.builder()
-                .id(bookService.getMaxId()+1)
+                .id(bookService.getMaxId() + 1)
                 .title(book.getTitle())
                 .releaseDate(book.getReleaseDate())
                 .author(authorService.getAuthorById(book.getAuthor().getId())).build();
@@ -67,8 +67,8 @@ public class BookRestController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Object> updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book){
-        Book updatedBook =  Book.builder()
+    public ResponseEntity<Object> updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book) {
+        Book updatedBook = Book.builder()
                 .id(id)
                 .title(book.getTitle())
                 .releaseDate(book.getReleaseDate())

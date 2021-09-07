@@ -1,8 +1,6 @@
 package hu.tmx.mybooksapp.exception;
 
-import hu.tmx.mybooksapp.controller.AuthorController;
 import hu.tmx.mybooksapp.controller.AuthorRestController;
-import hu.tmx.mybooksapp.controller.BookController;
 import hu.tmx.mybooksapp.controller.BookRestController;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

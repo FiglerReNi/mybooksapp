@@ -26,20 +26,20 @@ public class AuthorRestController {
 
     @GetMapping(path = " ")
     public List<Author> allAuthor() throws ListItemNotFoundException {
-        if(authorService.getAllAuthor().isEmpty()){
+        if (authorService.getAllAuthor().isEmpty()) {
             throw new ListItemNotFoundException();
         }
         return authorService.getAllAuthor();
     }
 
     @GetMapping(path = "/{id}")
-    public Author authorById(@PathVariable(value = "id") int id){
+    public Author authorById(@PathVariable(value = "id") int id) {
         return authorService.getAuthorById(id);
 
     }
 
-    @DeleteMapping(path="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> deleteAuthor(@PathVariable(value = "id") int id){
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> deleteAuthor(@PathVariable(value = "id") int id) {
         authorService.delete(authorService.getAuthorById(id));
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "status", HttpStatus.OK.value(),
@@ -47,9 +47,9 @@ public class AuthorRestController {
     }
 
     @PostMapping(" ")
-    public ResponseEntity<Object> saveNewAuthor(@Valid @RequestBody Author author){
+    public ResponseEntity<Object> saveNewAuthor(@Valid @RequestBody Author author) {
         authorService.save(Author.builder()
-                .id(authorService.getMaxId()+1)
+                .id(authorService.getMaxId() + 1)
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())
                 .age(author.getAge()).build());
@@ -59,7 +59,7 @@ public class AuthorRestController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Object> updateAuthor(@PathVariable(value = "id") int id,@Valid @RequestBody Author author){
+    public ResponseEntity<Object> updateAuthor(@PathVariable(value = "id") int id, @Valid @RequestBody Author author) {
         Author updatedAuthor = Author.builder()
                 .id(id)
                 .firstName(author.getFirstName())

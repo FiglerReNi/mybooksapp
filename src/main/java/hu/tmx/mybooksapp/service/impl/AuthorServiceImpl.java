@@ -56,7 +56,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public void addOneBook(Book book){
+    public void addOneBook(Book book) {
         authorDao.addOneBookToList(book);
     }
 

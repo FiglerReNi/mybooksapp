@@ -1,18 +1,21 @@
 package hu.tmx.mybooksapp.dao.mem;
 
 import hu.tmx.mybooksapp.dao.BookDao;
-import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
+import hu.tmx.mybooksapp.service.AuthorService;
 import hu.tmx.mybooksapp.util.conn.JdbcConn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Primary
 @Component
@@ -20,6 +23,12 @@ public class BookDaoJdbc implements BookDao {
 
     JdbcConn jdbcConn;
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    private AuthorService authorService;
+
+    @Autowired
+    public void setAuthorService(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @Autowired
     public void setJdbcConn(JdbcConn jdbcConn) {
@@ -28,17 +37,68 @@ public class BookDaoJdbc implements BookDao {
 
     @Override
     public List<Book> getAllBooksWithAuthorFromList() {
-        return null;
+        List<Book> books = null;
+        try {
+            String sql = "select * from books ORDER BY title";
+            PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            books = new ArrayList<>();
+            while (rs.next()) {
+                books.add(Book.builder()
+                        .id(rs.getInt("id"))
+                        .title(rs.getString("title"))
+                        .releaseDate(rs.getInt("release_date"))
+                        .author(authorService.getAuthorById(rs.getInt("id_author"))).build());
+            }
+        } catch (SQLException ex) {
+            logger.info("getAllAuthorFromList: " + ex);
+        }
+        return books;
     }
 
     @Override
     public Book getBookWithAuthorByIdFromList(int id) {
-        return null;
+        Book book = null;
+        try {
+            String sql = "select * from books where id = ?";
+            PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                book = Book.builder()
+                        .id(rs.getInt("id"))
+                        .title(rs.getString("title"))
+                        .releaseDate(rs.getInt("release_date"))
+                        .author(authorService.getAuthorById(rs.getInt("id_author"))).build();
+            }
+        } catch (SQLException ex) {
+            logger.info("getAuthorByIdFromList: " + ex);
+        }
+        if (book == null) {
+            throw new NoSuchElementException(id + ". id doesn't exists.");
+        } else {
+            return book;
+        }
     }
 
     @Override
     public int getMaxIdFromList() {
-        return 0;
+        int result = 0;
+        try {
+            String sql = "select MAX(id) as 'max' from books";
+            PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                result = rs.getInt("max");
+            }
+        } catch (SQLException ex) {
+            logger.info("getMaxIdFromList: " + ex);
+        }
+        if (result == 0) {
+            throw new NoSuchElementException("Maximum id not found.");
+        } else {
+            return result;
+        }
     }
 
     @Override
@@ -58,12 +118,29 @@ public class BookDaoJdbc implements BookDao {
 
     @Override
     public void deleteFromList(Book book) {
-
+        try {
+            String sql = "delete from books where id = ?";
+            PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
+            pstm.setInt(1, book.getId());
+            pstm.execute();
+        } catch (SQLException ex) {
+            logger.info("deleteFromList: " + ex);
+        }
     }
 
     @Override
     public void updateList(int id, Book book) {
-
+        try {
+            String sql = "update books set title = ?, release_date = ?, id_author = ? where id = ?";
+            PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
+            pstm.setString(1, book.getTitle());
+            pstm.setInt(2, book.getReleaseDate());
+            pstm.setInt(3, book.getAuthor().getId());
+            pstm.setInt(4, book.getId());
+            pstm.execute();
+        } catch (SQLException ex) {
+            logger.info("updateList: " + ex);
+        }
     }
 
     @Override
@@ -86,7 +163,7 @@ public class BookDaoJdbc implements BookDao {
                 result = false;
             }
         } catch (SQLException ex) {
-            logger.info("getSpecificAuthor: " + ex);
+            logger.info("existsBook: " + ex);
         }
         return result;
     }

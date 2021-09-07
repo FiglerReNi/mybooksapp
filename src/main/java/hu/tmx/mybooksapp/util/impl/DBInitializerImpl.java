@@ -7,6 +7,7 @@ import hu.tmx.mybooksapp.service.BookService;
 import hu.tmx.mybooksapp.util.DBInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
@@ -32,9 +33,6 @@ public class DBInitializerImpl implements DBInitializer {
 
     @Override
     public void bookInitializer(List<Book> books) {
-        books.forEach(book -> {
-                    bookService.saveFirst(book);
-                }
-        );
+        books.forEach(book -> bookService.saveFirst(book));
     }
 }

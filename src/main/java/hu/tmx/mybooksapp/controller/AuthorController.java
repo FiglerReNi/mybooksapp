@@ -19,21 +19,21 @@ public class AuthorController {
     }
 
     @GetMapping(path = " ")
-    public String allAuthor(Model model){
+    public String allAuthor(Model model) {
         model.addAttribute("authors", authorService.getAllAuthor());
         return "view/allAuthor";
     }
 
     @GetMapping(path = "/{id}")
-    public String authorById(@PathVariable(value = "id") int id, Model model){
+    public String authorById(@PathVariable(value = "id") int id, Model model) {
         model.addAttribute("author", authorService.getAuthorById(id));
         return "view/authorById";
     }
 
     @PostMapping(" ")
-    public String saveNewAuthor(@ModelAttribute Author author){
+    public String saveNewAuthor(@ModelAttribute Author author) {
         authorService.save(Author.builder()
-                .id(authorService.getMaxId()+1)
+                .id(authorService.getMaxId() + 1)
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())
                 .age(author.getAge()).build());
@@ -41,25 +41,25 @@ public class AuthorController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteAuthor(@PathVariable(value = "id") int id){
+    public String deleteAuthor(@PathVariable(value = "id") int id) {
         authorService.delete(authorService.getAuthorById(id));
         return "index";
     }
 
     @PutMapping(value = "/{id}")
-    public String updateAuthor(@PathVariable(value = "id") int id, @RequestBody Author author){
+    public String updateAuthor(@PathVariable(value = "id") int id, @RequestBody Author author) {
         authorService.update(id, author);
         return "index";
     }
 
     @GetMapping(path = "/new")
-    public String newAuthor(Model model){
+    public String newAuthor(Model model) {
         model.addAttribute("author", new Author());
         return "view/newAuthor";
     }
 
     @GetMapping(path = "/update/{id}")
-    public String updateAuthorView(Model model, @PathVariable(value = "id") int id){
+    public String updateAuthorView(Model model, @PathVariable(value = "id") int id) {
         model.addAttribute("authorUpdate", authorService.getAuthorById(id));
         return "view/updateAuthor";
     }
