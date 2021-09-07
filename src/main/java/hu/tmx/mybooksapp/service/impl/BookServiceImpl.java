@@ -38,6 +38,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void saveFirst(Book book) {
+        bookDao.saveToListFirst(book);
+    }
+
+    @Override
     public void delete(Book book) {
         bookDao.deleteFromList(book);
     }

@@ -19,4 +19,6 @@ public interface AuthorDao {
    void updateList(int id, Author author);
 
     void addOneBookToList(Book book);
+
+    void saveToListFirst(Author author);
 }
