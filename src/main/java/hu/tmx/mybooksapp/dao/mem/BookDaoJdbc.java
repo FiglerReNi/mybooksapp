@@ -44,11 +44,12 @@ public class BookDaoJdbc implements BookDao {
     @Override
     public void saveToList(Book book) {
         try {
-            String sql = "insert into books (title, release_date, id_author) values(?,?,?)";
+            String sql = "insert into books (id, title, release_date, id_author) values(?,?,?,?)";
             PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
-            pstm.setString(1, book.getTitle());
-            pstm.setInt(2, book.getReleaseDate());
-            pstm.setInt(3, book.getAuthor().getId());
+            pstm.setInt(1, book.getId());
+            pstm.setString(2, book.getTitle());
+            pstm.setInt(3, book.getReleaseDate());
+            pstm.setInt(4, book.getAuthor().getId());
             pstm.execute();
         } catch (SQLException ex) {
             logger.info("saveToList" + ex);
