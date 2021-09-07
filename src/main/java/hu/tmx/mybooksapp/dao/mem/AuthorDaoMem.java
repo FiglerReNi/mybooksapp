@@ -53,6 +53,9 @@ public class AuthorDaoMem implements AuthorDao {
     @Override
     public void deleteFromList(Author author) {
         authors.remove(author);
+        bookService.getAllBooksWithAuthor().stream()
+                .filter(book -> book.getAuthor().getId() == author.getId())
+                .forEach(b -> bookService.delete(b));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package hu.tmx.mybooksapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.validation.constraints.*;
@@ -23,6 +24,7 @@ public class Author {
     @Positive
     private Integer age;
     @ToString.Exclude
+    //@JsonIgnore - a Lista változathoz kell, jdbc-hez nem
     private List<Book> books;
 
     public void addBook(Book book) {
