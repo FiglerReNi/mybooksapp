@@ -1,6 +1,5 @@
 package hu.tmx.mybooksapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.validation.Valid;
