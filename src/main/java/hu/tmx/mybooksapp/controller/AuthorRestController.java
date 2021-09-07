@@ -70,5 +70,4 @@ public class AuthorRestController {
                 "status", HttpStatus.OK.value(),
                 "message", "author updated"));
     }
-
 }

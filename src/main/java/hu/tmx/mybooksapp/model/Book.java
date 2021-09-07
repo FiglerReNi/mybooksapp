@@ -21,7 +21,6 @@ public class Book {
     @DecimalMin("1000")
     @DecimalMax("9999")
     private int releaseDate;
-    @JsonIgnore
     @Valid
     private Author author;
 
