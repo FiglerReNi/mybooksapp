@@ -30,16 +30,6 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public int getMaxId() {
-        return authorDao.getMaxIdFromList();
-    }
-
-    @Override
-    public void saveFirst(Author author) {
-        authorDao.saveToListFirst(author);
-    }
-
-    @Override
     public void save(Author author) {
         authorDao.saveToList(author);
     }
@@ -55,9 +45,5 @@ public class AuthorServiceImpl implements AuthorService {
         authorDao.updateList(id, author);
     }
 
-    @Override
-    public void addOneBook(Book book) {
-        authorDao.addOneBookToList(book);
-    }
 
 }

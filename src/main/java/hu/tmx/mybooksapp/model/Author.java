@@ -27,10 +27,4 @@ public class Author {
     //@JsonIgnore - a Lista változathoz kell, jdbc-hez nem
     private List<Book> books;
 
-    public void addBook(Book book) {
-        if (books == null) {
-            books = new ArrayList<>();
-        }
-        books.add(book);
-    }
 }

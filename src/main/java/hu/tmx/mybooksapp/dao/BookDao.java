@@ -9,13 +9,10 @@ public interface BookDao {
 
     Book getBookWithAuthorByIdFromList(int id);
 
-    int getMaxIdFromList();
-
     void saveToList(Book book);
 
     void deleteFromList(Book book);
 
     void updateList(int id, Book book);
 
-    void saveToListFirst(Book book);
 }

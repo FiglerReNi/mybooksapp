@@ -11,15 +11,9 @@ public interface AuthorService {
 
     Author getAuthorById(int id);
 
-    int getMaxId();
-
-    void saveFirst(Author author);
-
     void save(Author author);
 
     void delete(Author authorById);
 
     void update(int id, Author author);
-
-    void addOneBook(Book book);
 }

@@ -33,7 +33,6 @@ public class AuthorController {
     @PostMapping(" ")
     public String saveNewAuthor(@ModelAttribute Author author) {
         authorService.save(Author.builder()
-                .id(authorService.getMaxId() + 1)
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())
                 .age(author.getAge()).build());

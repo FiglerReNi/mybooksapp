@@ -42,7 +42,6 @@ public class BookController {
     public String saveNewBook(@RequestParam("title") String title, @RequestParam("releaseDate") String releaseDate, @RequestParam("authorId") String authorId) {
         Author authorOfBook = authorService.getAuthorById(Integer.parseInt(authorId));
         Book book = Book.builder()
-                .id(bookService.getMaxId() + 1)
                 .title(title)
                 .releaseDate(Integer.parseInt(releaseDate))
                 .author(authorOfBook).build();

@@ -9,11 +9,7 @@ public interface BookService {
 
     Book getBookWithAuthorById(int id);
 
-    int getMaxId();
-
     void save(Book book);
-
-    void saveFirst(Book book);
 
     void delete(Book book);
 

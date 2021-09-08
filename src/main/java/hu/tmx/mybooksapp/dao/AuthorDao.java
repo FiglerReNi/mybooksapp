@@ -10,15 +10,10 @@ public interface AuthorDao {
 
     Author getAuthorByIdFromList(int id);
 
-    int getMaxIdFromList();
-
     void saveToList(Author author);
 
     void deleteFromList(Author authorById);
 
     void updateList(int id, Author author);
 
-    void addOneBookToList(Book book);
-
-    void saveToListFirst(Author author);
 }

@@ -49,7 +49,6 @@ public class AuthorRestController {
     @PostMapping(" ")
     public ResponseEntity<Object> saveNewAuthor(@Valid @RequestBody Author author) {
         authorService.save(Author.builder()
-                .id(authorService.getMaxId() + 1)
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())
                 .age(author.getAge()).build());

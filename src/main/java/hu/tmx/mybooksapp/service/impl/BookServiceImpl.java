@@ -29,18 +29,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public int getMaxId() {
-        return bookDao.getMaxIdFromList();
-    }
-
-    @Override
     public void save(Book book) {
         bookDao.saveToList(book);
-    }
-
-    @Override
-    public void saveFirst(Book book) {
-        bookDao.saveToListFirst(book);
     }
 
     @Override

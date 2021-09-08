@@ -55,12 +55,10 @@ public class BookRestController {
     @PostMapping(" ")
     public ResponseEntity<Object> saveNewBook(@Valid @RequestBody Book book) {
         Book newBook = Book.builder()
-                .id(bookService.getMaxId() + 1)
                 .title(book.getTitle())
                 .releaseDate(book.getReleaseDate())
                 .author(authorService.getAuthorById(book.getAuthor().getId())).build();
         bookService.save(newBook);
-        authorService.addOneBook(newBook);
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "status", HttpStatus.OK.value(),
                 "message", "book saved"));

@@ -51,13 +51,13 @@ public class JdbcConn {
             ResultSet rs = dbmd.getTables(null, null, "AUTHORS", null);
             if (!rs.next()) {
                 createStatement.execute(
-                        "create table AUTHORS(id int not null primary key, " +
+                        "create table AUTHORS(id int not null primary key AUTO_INCREMENT," +
                                 "firstname varchar(100) not null, lastname varchar(100) not null, age int not null)");
             }
             rs = dbmd.getTables(null, null, "BOOKS", null);
             if (!rs.next()) {
                 createStatement.execute(
-                        "create table BOOKS(id int not null primary key, " +
+                        "create table BOOKS(id int not null primary key AUTO_INCREMENT," +
                                 "title varchar(100) not null, release_date year not null, id_author int not null, foreign key(id_author) REFERENCES AUTHORS (id))");
             }
         } catch (SQLException ex) {

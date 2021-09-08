@@ -85,34 +85,13 @@ public class AuthorDaoJdbc implements AuthorDao {
     }
 
     @Override
-    public int getMaxIdFromList() {
-        int result = 0;
-        try {
-            String sql = "select MAX(id) as 'max' from authors";
-            PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                result = rs.getInt("max");
-            }
-        } catch (SQLException ex) {
-            logger.info("getMaxIdFromList: " + ex);
-        }
-        if (result == 0) {
-            throw new NoSuchElementException("Maximum id not found.");
-        } else {
-            return result;
-        }
-    }
-
-    @Override
     public void saveToList(Author author) {
         try {
-            String sql = "insert into authors (id, firstname, lastname, age) values(?, ?,?,?)";
+            String sql = "insert into authors (firstname, lastname, age) values(?,?,?)";
             PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
-            pstm.setInt(1, author.getId());
-            pstm.setString(2, author.getFirstName());
-            pstm.setString(3, author.getLastName());
-            pstm.setInt(4, author.getAge());
+            pstm.setString(1, author.getFirstName());
+            pstm.setString(2, author.getLastName());
+            pstm.setInt(3, author.getAge());
             pstm.execute();
         } catch (SQLException ex) {
             logger.info("saveToList: " + ex);
@@ -146,36 +125,6 @@ public class AuthorDaoJdbc implements AuthorDao {
         } catch (SQLException ex) {
             logger.info("updateList: " + ex);
         }
-    }
-
-    @Override
-    public void addOneBookToList(Book book) {
-
-    }
-
-    @Override
-    public void saveToListFirst(Author author) {
-        if (!existsAuthor(author)) {
-            saveToList(author);
-        }
-    }
-
-    private boolean existsAuthor(Author author) {
-        boolean result = true;
-        try {
-            String sql = "select * from authors where firstname = ? and lastname = ? and age = ?";
-            PreparedStatement pstm = jdbcConn.getConn().prepareStatement(sql);
-            pstm.setString(1, author.getFirstName());
-            pstm.setString(2, author.getLastName());
-            pstm.setInt(3, author.getAge());
-            ResultSet rs = pstm.executeQuery();
-            if (!rs.next()) {
-                result = false;
-            }
-        } catch (SQLException ex) {
-            logger.info("existsAuthor: " + ex);
-        }
-        return result;
     }
 
     private List<Book> booksList(int id) {
