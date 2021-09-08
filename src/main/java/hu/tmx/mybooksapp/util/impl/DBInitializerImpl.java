@@ -13,9 +13,9 @@ import java.util.List;
 public class DBInitializerImpl implements DBInitializer {
 
     @Autowired
-    AuthorService authorService;
+    private AuthorService authorService;
     @Autowired
-    BookService bookService;
+    private BookService bookService;
 
     @Override
     public void authorInitializer(List<Author> authors) {

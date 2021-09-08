@@ -16,9 +16,9 @@ import java.util.List;
 public class MybooksappApplication {
 
     @Autowired
-    DBInitializer dbInitializer;
+    private DBInitializer dbInitializer;
     @Autowired
-    AuthorService authorService;
+    private AuthorService authorService;
 
     public static void main(String[] args) {
         SpringApplication.run(MybooksappApplication.class, args);

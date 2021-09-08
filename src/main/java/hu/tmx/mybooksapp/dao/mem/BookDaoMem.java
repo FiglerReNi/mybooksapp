@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Component
 public class BookDaoMem implements BookDao {
 
-    public static List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     @Autowired
     private AuthorService authorService;

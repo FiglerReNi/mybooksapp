@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class AuthorDaoMem implements AuthorDao {
 
-    public static List<Author> authors = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>();
 
     @Autowired
     private BookService bookService;
