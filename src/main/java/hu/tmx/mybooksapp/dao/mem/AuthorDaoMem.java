@@ -14,12 +14,8 @@ public class AuthorDaoMem implements AuthorDao {
 
     public static List<Author> authors = new ArrayList<>();
 
-    private BookService bookService;
-
     @Autowired
-    public void setBookService(BookService bookService) {
-        this.bookService = bookService;
-    }
+    private BookService bookService;
 
     @Override
     public List<Author> getAllAuthorFromList() {

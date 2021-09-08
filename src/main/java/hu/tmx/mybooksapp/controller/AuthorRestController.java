@@ -17,12 +17,8 @@ import java.util.Map;
 @RequestMapping(path = "/rest/authors")
 public class AuthorRestController {
 
-    private AuthorService authorService;
-
     @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
+    private AuthorService authorService;
 
     @GetMapping(path = " ")
     public List<Author> allAuthor() throws ListItemNotFoundException {

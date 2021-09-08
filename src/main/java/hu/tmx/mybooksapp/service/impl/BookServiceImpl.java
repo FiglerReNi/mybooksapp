@@ -10,12 +10,8 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-    private BookDao bookDao;
-
     @Autowired
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
+    private BookDao bookDao;
 
     @Override
     public List<Book> getAllBooksWithAuthor() {

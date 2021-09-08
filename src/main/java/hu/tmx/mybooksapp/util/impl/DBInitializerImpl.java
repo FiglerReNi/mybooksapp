@@ -12,18 +12,10 @@ import java.util.List;
 @Component
 public class DBInitializerImpl implements DBInitializer {
 
+    @Autowired
     AuthorService authorService;
+    @Autowired
     BookService bookService;
-
-    @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
-
-    @Autowired
-    public void setBookService(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @Override
     public void authorInitializer(List<Author> authors) {

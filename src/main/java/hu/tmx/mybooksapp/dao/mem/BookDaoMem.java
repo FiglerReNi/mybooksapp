@@ -13,12 +13,8 @@ public class BookDaoMem implements BookDao {
 
     public static List<Book> books = new ArrayList<>();
 
-    private AuthorService authorService;
-
     @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
+    private AuthorService authorService;
 
     @Override
     public List<Book> getAllBooksWithAuthorFromList() {

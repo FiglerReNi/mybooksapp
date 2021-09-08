@@ -12,12 +12,8 @@ import java.util.List;
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
-    private AuthorDao authorDao;
-
     @Autowired
-    public void setAuthorDao(AuthorDao authorDao) {
-        this.authorDao = authorDao;
-    }
+    private AuthorDao authorDao;
 
     @Override
     public List<Author> getAllAuthor() {

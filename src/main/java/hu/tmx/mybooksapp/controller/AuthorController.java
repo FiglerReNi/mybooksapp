@@ -11,12 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/view/authors")
 public class AuthorController {
 
-    private AuthorService authorService;
-
     @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
+    private AuthorService authorService;
 
     @GetMapping(path = " ")
     public String allAuthor(Model model){

@@ -13,17 +13,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 
 @ControllerAdvice(assignableTypes = {AuthorRestController.class, BookRestController.class})
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+
     @ExceptionHandler(ListItemNotFoundException.class)
-    public void springHandleNotFound(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.NOT_FOUND.value());
+    public ResponseEntity<Object> springHandleNotFound(Exception exception) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(Map.of(
+                "status", HttpStatus.UNPROCESSABLE_ENTITY.value(),
+                "message", exception.getMessage()));
     }
+
 
     @ExceptionHandler(NoSuchElementException.class)
     public void springHandleNoSuchElementException(HttpServletResponse response) throws IOException {
