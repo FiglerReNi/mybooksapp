@@ -26,13 +26,13 @@ public class BookController {
         this.authorService = authorService;
     }
 
-    @RequestMapping(path = " ", method = RequestMethod.GET)
+    @GetMapping(path = " ")
     public String allBooksWithAuthor(Model model){
         model.addAttribute("books", bookService.getAllBooksWithAuthor());
         return "view/allBooksWithAuthor";
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    @GetMapping(path = "/{id}")
     public String bookWithAuthorById(@PathVariable(value = "id") int id, Model model){
         model.addAttribute("book", bookService.getBookWithAuthorById(id));
         return "view/bookWithAuthorById";
@@ -62,13 +62,13 @@ public class BookController {
         return "index";
     }
 
-    @RequestMapping(path = "/new", method = RequestMethod.GET)
+    @GetMapping(path = "/new")
     public String newBook(Model model){
         model.addAttribute("authors", authorService.getAllAuthor());
         return "view/newBook";
     }
 
-    @RequestMapping(path = "/update/{id}", method = RequestMethod.GET)
+    @GetMapping(path = "/update/{id}")
     public String updateBookView(Model model, @PathVariable(value = "id") int id){
         model.addAttribute("book", bookService.getBookWithAuthorById(id));
         model.addAttribute("authors", authorService.getAllAuthor());
