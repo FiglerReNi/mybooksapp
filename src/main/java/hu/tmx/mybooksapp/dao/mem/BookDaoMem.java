@@ -12,14 +12,10 @@ import java.util.stream.Collectors;
 @Component
 public class BookDaoMem implements BookDao {
 
-    public static List<Book> books = new ArrayList<>();
-
-    private AuthorService authorService;
+    private List<Book> books = new ArrayList<>();
 
     @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
+    private AuthorService authorService;
 
     @Override
     public List<Book> getAllBooksWithAuthorFromList() {

@@ -15,18 +15,10 @@ import java.util.List;
 @SpringBootApplication
 public class MybooksappApplication {
 
-    DBInitializer dbInitializer;
-    AuthorService authorService;
-
     @Autowired
-    public void setDbInitializer(DBInitializer dbInitializer) {
-        this.dbInitializer = dbInitializer;
-    }
-
+    private DBInitializer dbInitializer;
     @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
+    private AuthorService authorService;
 
     public static void main(String[] args) {
         SpringApplication.run(MybooksappApplication.class, args);
