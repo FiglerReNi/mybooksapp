@@ -18,18 +18,10 @@ import java.util.Map;
 @RequestMapping(path = "/rest/books")
 public class BookRestController {
 
+    @Autowired
     private BookService bookService;
+    @Autowired
     private AuthorService authorService;
-
-    @Autowired
-    public void setBookService(BookService bookService) {
-        this.bookService = bookService;
-    }
-
-    @Autowired
-    public void setAuthorService(AuthorService authorService) {
-        this.authorService = authorService;
-    }
 
     @GetMapping(path = " ")
     public List<Book> allBooksWithAuthor() throws ListItemNotFoundException {

@@ -22,19 +22,11 @@ import java.util.NoSuchElementException;
 @Component
 public class AuthorDaoJdbc implements AuthorDao {
 
-    JdbcConn jdbcConn;
+    @Autowired
+    private JdbcConn jdbcConn;
     Logger logger = LoggerFactory.getLogger(this.getClass());
-    BookService bookService;
-
     @Autowired
-    public void setBookService(BookService bookService) {
-        this.bookService = bookService;
-    }
-
-    @Autowired
-    public void setJdbcConn(JdbcConn jdbcConn) {
-        this.jdbcConn = jdbcConn;
-    }
+    private BookService bookService;
 
     @Override
     public List<Author> getAllAuthorFromList() {
