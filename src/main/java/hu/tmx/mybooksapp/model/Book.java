@@ -18,7 +18,7 @@ public class Book {
     @Setter(AccessLevel.NONE)
     private int id;
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z- ']+$")
+    @Pattern(regexp = "^[a-zA-Z0-9- ']+$")
     private String title;
     @NotNull
     @Positive
