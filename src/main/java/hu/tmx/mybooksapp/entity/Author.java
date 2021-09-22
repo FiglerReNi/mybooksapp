@@ -19,11 +19,11 @@ public class Author {
     private int id;
     @NotNull
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z-]+$")
+    @Pattern(regexp = "^[a-zA-Z- ]+$")
     private String firstName;
     @NotNull
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z-]+$")
+    @Pattern(regexp = "^[a-zA-Z- ]+$")
     private String lastName;
     @NotNull
     @Positive
