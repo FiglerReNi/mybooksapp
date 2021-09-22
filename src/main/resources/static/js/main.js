@@ -72,7 +72,7 @@ $(document).ready(function () {
                 url: "../" + this.id,
                 contentType: "application/json",
                 data: JSON.stringify(data),
-                success: function () {
+                success: function (data) {
                     $("body").html(data)
                 }
             });
