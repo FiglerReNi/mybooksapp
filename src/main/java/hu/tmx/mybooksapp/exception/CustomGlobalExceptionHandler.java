@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 
 @ControllerAdvice(assignableTypes = {AuthorRestController.class, BookRestController.class})
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -35,7 +33,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public void springHandleMethodArgumentTypeMismatchException(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.BAD_REQUEST.value());
+        response.sendError(HttpStatus.UNPROCESSABLE_ENTITY.value());
     }
 
     @Override

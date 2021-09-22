@@ -1,6 +1,5 @@
 package hu.tmx.mybooksapp.controller;
 
-import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
 import hu.tmx.mybooksapp.service.AuthorService;
 import hu.tmx.mybooksapp.service.BookService;
@@ -8,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path = "/view/books")
@@ -32,11 +33,10 @@ public class BookController {
 
     @PostMapping(" ")
     public String saveNewBook(@RequestParam("title") String title, @RequestParam("releaseDate") String releaseDate, @RequestParam("authorId") String authorId) {
-        Author authorOfBook = authorService.getAuthorById(Integer.parseInt(authorId));
         Book book = Book.builder()
                 .title(title)
                 .releaseDate(Integer.parseInt(releaseDate))
-                .author(authorOfBook).build();
+                .author(authorService.getAuthorById(Integer.parseInt(authorId))).build();
         bookService.save(book);
         return "index";
     }
@@ -48,8 +48,8 @@ public class BookController {
     }
 
     @PutMapping(value = "/{id}")
-    public String updateBook(@PathVariable(value = "id") int id, @RequestBody Book book) {
-        bookService.update(id, book);
+    public String updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book) {
+        bookService.save(book);
         return "index";
     }
 

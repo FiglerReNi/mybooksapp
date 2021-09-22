@@ -73,7 +73,7 @@ $(document).ready(function () {
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 success: function () {
-                    window.open("/", "_self")
+                    $("body").html(data)
                 }
             });
         }
@@ -97,8 +97,8 @@ $(document).ready(function () {
                 url: "../" + this.id,
                 contentType: "application/json",
                 data: JSON.stringify(bookData),
-                success: function () {
-                    window.open("/", "_self")
+                success: function (data) {
+                    $("body").html(data)
                 }
             });
         }

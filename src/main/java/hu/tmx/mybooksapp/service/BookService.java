@@ -1,7 +1,6 @@
 package hu.tmx.mybooksapp.service;
 
 import hu.tmx.mybooksapp.model.Book;
-
 import java.util.List;
 
 public interface BookService {
@@ -9,9 +8,8 @@ public interface BookService {
 
     Book getBookWithAuthorById(int id);
 
-    void save(Book book);
+    Book save(Book book);
 
     void delete(Book book);
 
-    void update(int id, Book book);
 }

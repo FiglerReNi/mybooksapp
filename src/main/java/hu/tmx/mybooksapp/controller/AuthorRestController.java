@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -44,10 +43,7 @@ public class AuthorRestController {
 
     @PostMapping(" ")
     public ResponseEntity<Object> saveNewAuthor(@Valid @RequestBody Author author) {
-        authorService.save(Author.builder()
-                .firstName(author.getFirstName())
-                .lastName(author.getLastName())
-                .age(author.getAge()).build());
+        authorService.save(author);
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "status", HttpStatus.OK.value(),
                 "message", "author saved"));
@@ -55,12 +51,14 @@ public class AuthorRestController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateAuthor(@PathVariable(value = "id") int id, @Valid @RequestBody Author author) {
-        Author updatedAuthor = Author.builder()
-                .id(id)
-                .firstName(author.getFirstName())
-                .lastName(author.getLastName())
-                .age(author.getAge()).build();
-        authorService.update(id, updatedAuthor);
+        if (null != authorService.getAuthorById(id)) {
+            Author updatedAuthor = Author.builder()
+                    .id(id)
+                    .firstName(author.getFirstName())
+                    .lastName(author.getLastName())
+                    .age(author.getAge()).build();
+            authorService.save(updatedAuthor);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "status", HttpStatus.OK.value(),
                 "message", "author updated"));

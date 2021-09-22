@@ -46,25 +46,25 @@ public class BookRestController {
 
     @PostMapping(" ")
     public ResponseEntity<Object> saveNewBook(@Valid @RequestBody Book book) {
-        Book newBook = Book.builder()
-                .title(book.getTitle())
-                .releaseDate(book.getReleaseDate())
-                .author(authorService.getAuthorById(book.getAuthor().getId())).build();
-        bookService.save(newBook);
+        if (null != authorService.getAuthorById(book.getAuthor().getId())) {
+            bookService.save(book);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "status", HttpStatus.OK.value(),
                 "message", "book saved"));
     }
 
+
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book) {
-        Book updatedBook = Book.builder()
-                .id(id)
-                .title(book.getTitle())
-                .releaseDate(book.getReleaseDate())
-                .author(authorService.getAuthorById(book.getAuthor().getId())).build();
-        bookService.update(id, updatedBook);
-
+        if(null != bookService.getBookWithAuthorById(id)){
+            Book updatedBook = Book.builder()
+                    .id(id)
+                    .title(book.getTitle())
+                    .releaseDate(book.getReleaseDate())
+                    .author(authorService.getAuthorById(book.getAuthor().getId())).build();
+            bookService.save(updatedBook);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                 "status", HttpStatus.OK.value(),
                 "message", "book updated"));

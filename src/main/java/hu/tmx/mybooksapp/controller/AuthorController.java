@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping(path = "/view/authors")
 public class AuthorController {
@@ -28,10 +30,7 @@ public class AuthorController {
 
     @PostMapping(" ")
     public String saveNewAuthor(@ModelAttribute Author author) {
-        authorService.save(Author.builder()
-                .firstName(author.getFirstName())
-                .lastName(author.getLastName())
-                .age(author.getAge()).build());
+        authorService.save(author);
         return "index";
     }
 
@@ -41,11 +40,11 @@ public class AuthorController {
         return "index";
     }
 
-    @PutMapping(value = "/{id}")
-    public String updateAuthor(@PathVariable(value = "id") int id, @RequestBody Author author) {
-        authorService.update(id, author);
+   @PutMapping(value = "/{id}")
+   public String updateAuthor(@PathVariable(value = "id") int id, @Valid @RequestBody Author author) {
+        authorService.save(author);
         return "index";
-    }
+   }
 
     @GetMapping(path = "/new")
     public String newAuthor(Model model) {

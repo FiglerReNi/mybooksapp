@@ -1,8 +1,8 @@
 package hu.tmx.mybooksapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -10,8 +10,12 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity(name="books")
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private int id;
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z- ]+$")
@@ -22,6 +26,8 @@ public class Book {
     @DecimalMax("9999")
     private int releaseDate;
     @Valid
+    @ManyToOne
+    @JsonBackReference
     private Author author;
 
 }

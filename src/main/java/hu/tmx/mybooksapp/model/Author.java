@@ -1,18 +1,21 @@
 package hu.tmx.mybooksapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-
+import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity(name="authors")
 public class Author {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private int id;
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z-]+$")
@@ -24,7 +27,8 @@ public class Author {
     @Positive
     private Integer age;
     @ToString.Exclude
-    //@JsonIgnore - a Lista változathoz kell, jdbc-hez nem
+    @OneToMany(mappedBy = "author")
+    @JsonManagedReference
     private List<Book> books;
 
 }
