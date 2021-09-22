@@ -1,6 +1,6 @@
 package hu.tmx.mybooksapp.controller;
 
-import hu.tmx.mybooksapp.model.Book;
+import hu.tmx.mybooksapp.entity.Book;
 import hu.tmx.mybooksapp.service.AuthorService;
 import hu.tmx.mybooksapp.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;

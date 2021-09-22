@@ -1,7 +1,7 @@
 package hu.tmx.mybooksapp.controller;
 
 import hu.tmx.mybooksapp.exception.ListItemNotFoundException;
-import hu.tmx.mybooksapp.model.Author;
+import hu.tmx.mybooksapp.entity.Author;
 import hu.tmx.mybooksapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

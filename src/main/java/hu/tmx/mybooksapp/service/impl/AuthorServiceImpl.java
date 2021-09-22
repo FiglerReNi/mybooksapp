@@ -2,7 +2,7 @@ package hu.tmx.mybooksapp.service.impl;
 
 import hu.tmx.mybooksapp.repository.AuthorDao;
 import hu.tmx.mybooksapp.repository.BookDao;
-import hu.tmx.mybooksapp.model.Author;
+import hu.tmx.mybooksapp.entity.Author;
 import hu.tmx.mybooksapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -19,7 +19,7 @@
                     </thead>
                     <tbody class='border'>
                     <tr>
-                        <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.model.Book"*/-->
+                        <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.entity.Book"*/-->
                         <td th:text="${book.title}" class='border-secondary text-secondary text-center p-1'></td>
                         <td th:text="${book.releaseDate}" class='border-secondary text-secondary text-center p-1'></td>
                         <td th:text="${book.author.firstName} + ' ' + ${book.author.lastName}"

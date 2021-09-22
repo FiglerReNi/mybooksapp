@@ -1,6 +1,6 @@
 package hu.tmx.mybooksapp.service;
 
-import hu.tmx.mybooksapp.model.Book;
+import hu.tmx.mybooksapp.entity.Book;
 import java.util.List;
 
 public interface BookService {

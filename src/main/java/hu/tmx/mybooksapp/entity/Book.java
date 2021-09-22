@@ -1,4 +1,4 @@
-package hu.tmx.mybooksapp.model;
+package hu.tmx.mybooksapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
@@ -17,6 +17,7 @@ public class Book {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private int id;
+    @NotNull
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9- ']+$")
     private String title;

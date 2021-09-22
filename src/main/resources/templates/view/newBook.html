@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-4 col-xl-4">
                     <select class="col-md-9 col-xl-9 text-secondary border-secondary form-control p-1" name="authorId" id="authorId" >
-                        <!--/*@thymesVar id="bookAuthor" type="hu.tmx.mybooksapp.model.Author"*/-->
+                        <!--/*@thymesVar id="bookAuthor" type="hu.tmx.mybooksapp.entity.Author"*/-->
                         <option th:each="bookAuthor:${authors}" th:value="${bookAuthor.id}" th:text="${bookAuthor.firstName} + ' ' + ${bookAuthor.lastName}"></option>
                     </select>
                 </div>

@@ -15,7 +15,7 @@
           <label class="text-secondary font-weight-bolder" for="title">Title</label>
         </div>
         <div class="col-md-4 col-xl-4">
-          <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.model.Book"*/-->
+          <!--/*@thymesVar id="book" type="hu.tmx.mybooksapp.entity.Book"*/-->
           <input class="text-secondary border-secondary form-control p-1" type="text" name="title" id="title" th:value="${book.title}" required>
         </div>
         <div class="col-md-3 col-xl-3"></div>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-4 col-xl-4">
           <select class="col-md-9 col-xl-9 text-secondary border-secondary form-control p-1" name="authorId" id="authorId" >
-            <!--/*@thymesVar id="bookAuthor" type="hu.tmx.mybooksapp.model.Author"*/-->
+            <!--/*@thymesVar id="bookAuthor" type="hu.tmx.mybooksapp.entity.Author"*/-->
             <option th:each="bookAuthor:${authors}"  th:selected="(${bookAuthor.id} == ${book.author.id})"
                     th:value="${bookAuthor.id} + '|' + ${bookAuthor.firstName}  +'|' + ${bookAuthor.lastName} + '|' + ${bookAuthor.age}"
                     th:text="${bookAuthor.firstName} + ' ' + ${bookAuthor.lastName}"></option>
