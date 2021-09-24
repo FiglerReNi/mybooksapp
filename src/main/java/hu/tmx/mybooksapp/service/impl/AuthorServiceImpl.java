@@ -1,7 +1,7 @@
 package hu.tmx.mybooksapp.service.impl;
 
-import hu.tmx.mybooksapp.repository.AuthorDao;
-import hu.tmx.mybooksapp.repository.BookDao;
+import hu.tmx.mybooksapp.repository.AuthorRepo;
+import hu.tmx.mybooksapp.repository.BookRepo;
 import hu.tmx.mybooksapp.entity.Author;
 import hu.tmx.mybooksapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,29 +13,29 @@ import java.util.NoSuchElementException;
 public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
-    private AuthorDao authorDao;
+    private AuthorRepo authorRepo;
     @Autowired
-    private BookDao bookDao;
+    private BookRepo bookRepo;
 
     @Override
     public List<Author> getAllAuthor() {
-        return authorDao.findAll();
+        return authorRepo.findAll();
     }
 
     @Override
     public Author getAuthorById(int id) {
-        return authorDao.findById(id).orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
+        return authorRepo.findById(id).orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
     }
 
     @Override
     public Author save(Author author) {
-       return authorDao.save(author);
+       return authorRepo.save(author);
     }
 
     @Override
     public void delete(Author author) {
-        bookDao.deleteAll(bookDao.findAllByAuthorId(author.getId()));
-        authorDao.delete(author);
+        bookRepo.deleteAll(bookRepo.findAllByAuthorId(author.getId()));
+        authorRepo.delete(author);
     }
 
 

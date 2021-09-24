@@ -1,6 +1,6 @@
 package hu.tmx.mybooksapp.service.impl;
 
-import hu.tmx.mybooksapp.repository.BookDao;
+import hu.tmx.mybooksapp.repository.BookRepo;
 import hu.tmx.mybooksapp.entity.Book;
 import hu.tmx.mybooksapp.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,26 +12,26 @@ import java.util.NoSuchElementException;
 public class BookServiceImpl implements BookService {
 
     @Autowired
-    private BookDao bookDao;
+    private BookRepo bookRepo;
 
     @Override
     public List<Book> getAllBooksWithAuthor() {
-        return bookDao.findAll();
+        return bookRepo.findAll();
     }
 
     @Override
     public Book getBookWithAuthorById(int id) {
-        return bookDao.findById(id).orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
+        return bookRepo.findById(id).orElseThrow(()->new NoSuchElementException(id + ". id doesn't exists."));
     }
 
     @Override
     public Book save(Book book) {
-        return bookDao.save(book);
+        return bookRepo.save(book);
     }
 
     @Override
     public void delete(Book book) {
-        bookDao.delete(book);
+        bookRepo.delete(book);
     }
 
 
