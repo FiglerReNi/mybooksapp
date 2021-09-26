@@ -1,4 +1,4 @@
-package hu.tmx.mybooksapp.util.jwt;
+package hu.tmx.mybooksapp.util;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

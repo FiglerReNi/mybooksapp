@@ -1,6 +1,6 @@
-package hu.tmx.mybooksapp.util.jwt.impl;
+package hu.tmx.mybooksapp.util.impl;
 
-import hu.tmx.mybooksapp.util.jwt.Jwt;
+import hu.tmx.mybooksapp.util.Jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

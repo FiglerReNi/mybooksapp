@@ -1,7 +1,7 @@
 package hu.tmx.mybooksapp.controller;
 
 import hu.tmx.mybooksapp.model.JwtToken;
-import hu.tmx.mybooksapp.util.jwt.Jwt;
+import hu.tmx.mybooksapp.util.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
