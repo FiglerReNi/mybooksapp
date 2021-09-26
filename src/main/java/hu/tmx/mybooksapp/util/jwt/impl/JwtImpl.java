@@ -15,8 +15,11 @@ import java.util.Map;
 @Service
 public class JwtImpl implements Jwt {
 
-    @Value("${security.secretKey}")
-    private final String secretKey = "";
+    private String secretKey = "";
+
+    public JwtImpl(@Value("${security.secretKey}") String secretKey) {
+        this.secretKey = secretKey;
+    }
 
 //    private void extractAllClaims(String token){
 //        checkClaims =
@@ -34,19 +37,19 @@ public class JwtImpl implements Jwt {
 //        return extractExpiration().before(new Date());
 //    }
 
-    public String generateToken(UserDetails userDetails){
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000*60*60))
-                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                .signWith(SignatureAlgorithm.HS256, this.secretKey)
                 .compact();
     }
 
-    public boolean validateToken(UserDetails userDetails, String token){
-        Claims checkClaims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+    public boolean validateToken(UserDetails userDetails, String token) {
+        Claims checkClaims = Jwts.parser().setSigningKey(this.secretKey).parseClaimsJws(token).getBody();
         return (checkClaims.getSubject().equals(userDetails.getUsername()) && !checkClaims.getExpiration().before(new Date()));
     }
 

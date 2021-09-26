@@ -2,8 +2,6 @@ package hu.tmx.mybooksapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class MybooksappApplication {
@@ -11,9 +9,6 @@ public class MybooksappApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MybooksappApplication.class, args);
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-        System.out.println(passwordEncoder.encode("freni33"));
     }
 
 }
