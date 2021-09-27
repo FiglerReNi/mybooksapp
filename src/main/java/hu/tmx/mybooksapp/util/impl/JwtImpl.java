@@ -6,36 +6,24 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+@Component
 public class JwtImpl implements Jwt {
 
-    private String secretKey = "";
+    private final String secretKey;
 
     public JwtImpl(@Value("${security.secretKey}") String secretKey) {
         this.secretKey = secretKey;
     }
 
-//    private void extractAllClaims(String token){
-//        checkClaims =
-//    }
-
-//    public String extractUsername(){
-//        return checkClaims.getSubject();
-//    }
-//
-//    public Date extractExpiration(){
-//        return checkClaims.getExpiration();
-//    }
-//
-//    private boolean isTokenExpired(){
-//        return extractExpiration().before(new Date());
-//    }
+    public Claims extractAllClaims(String token) {
+        return Jwts.parser().setSigningKey(this.secretKey).parseClaimsJws(token).getBody();
+    }
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
@@ -49,8 +37,7 @@ public class JwtImpl implements Jwt {
     }
 
     public boolean validateToken(UserDetails userDetails, String token) {
-        Claims checkClaims = Jwts.parser().setSigningKey(this.secretKey).parseClaimsJws(token).getBody();
-        return (checkClaims.getSubject().equals(userDetails.getUsername()) && !checkClaims.getExpiration().before(new Date()));
+        return (extractAllClaims(token).getSubject().equals(userDetails.getUsername()) && !extractAllClaims(token).getExpiration().before(new Date()));
     }
 
 
