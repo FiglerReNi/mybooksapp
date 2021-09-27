@@ -3,7 +3,9 @@ package hu.tmx.mybooksapp.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,6 +43,11 @@ public class User {
             inverseJoinColumns= {@JoinColumn(name="role_id")}
     )
 
-    private Set<Role> roles = new HashSet<Role>();
+    private Set<Role> roles = new HashSet<>();
+
+    public void addRole(String role) {
+        this.roles.add(new Role(role));
+    }
+
 
 }

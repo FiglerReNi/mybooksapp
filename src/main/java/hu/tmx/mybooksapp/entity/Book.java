@@ -2,6 +2,7 @@ package hu.tmx.mybooksapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
