@@ -17,3 +17,7 @@
 # INSERT INTO `books` (`title`, `release_date`, `author_id`) VALUES ('After We Collided', '2014',  (SELECT id FROM authors WHERE first_name = 'Anna' AND last_name = 'Todd'));
 # INSERT INTO `books` (`title`, `release_date`, `author_id`) VALUES ('After We Fell', '2014', (SELECT id FROM authors WHERE first_name = 'Anna' AND last_name = 'Todd'));
 # INSERT INTO `books` (`title`, `release_date`, `author_id`) VALUES ('After Ever Happy', '2015', (SELECT id FROM authors WHERE first_name = 'Anna' AND last_name = 'Todd'));
+# INSERT INTO `users` (`email`, `username`, `password`) VALUES ('33renatafigler33@gmail.com', 'freni33', 'pass33');
+# INSERT INTO `users` (`email`, `username`, `password`) VALUES ('mesebelihely@gmail.com', 'freni', 'pass');
+# INSERT INTO `roles` (`role`) VALUES ('admin');
+# INSERT INTO `roles` (`role`) VALUES ('user');
