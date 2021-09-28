@@ -23,9 +23,8 @@ public class EmailServiceImpl implements EmailService {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public void sendMessage(String email, String code, String name) {
-        SimpleMailMessage msg = null;
-        try {
+    public void sendMessage(String email, String code, String name){
+        SimpleMailMessage msg;
             msg = new SimpleMailMessage();
             msg.setFrom(MESSAGE_FROM);
             msg.setTo(email);
@@ -33,8 +32,5 @@ public class EmailServiceImpl implements EmailService {
             msg.setText("Kedves " +name + "! \n\n Köszönjük, hogy regisztráltál az oldalunkra \n\n Kérlek aktiváld az email címed és kattints a linkre: \n\n"
                     + path + code);
             javaMailSender.send(msg);
-        } catch (Exception e) {
-            log.error("hiba email küldéskor az alábbi címre: " + email + " " + e);
-        }
     }
 }

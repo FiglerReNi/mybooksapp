@@ -30,6 +30,9 @@ $(document).ready(function () {
             type: "DELETE",
             success: function () {
                 window.open("/", "_self")
+            },
+            error: function (){
+                alert("Jogosultság hiba")
             }
         });
     });
@@ -40,6 +43,9 @@ $(document).ready(function () {
             type: "DELETE",
             success: function () {
                 window.open("/", "_self")
+            },
+            error: function (){
+                alert("Jogosultság hiba")
             }
         });
     });

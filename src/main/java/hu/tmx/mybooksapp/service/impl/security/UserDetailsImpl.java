@@ -1,4 +1,4 @@
-package hu.tmx.mybooksapp.service.security;
+package hu.tmx.mybooksapp.service.impl.security;
 
 import hu.tmx.mybooksapp.entity.Role;
 import hu.tmx.mybooksapp.entity.User;
@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
     private User user;
@@ -22,8 +21,7 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        Set<Role> roles = user.getRoles();
-        for(Role role :roles) {
+        for(Role role :user.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
         return authorities;

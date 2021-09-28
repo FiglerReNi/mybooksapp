@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-spring-security4"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8"/>
@@ -11,9 +12,14 @@
     <title>MyBooksApp</title>
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/auth.css}"/>
 </head>
 <body>
+            <div class="container pt-5 text-center">
+                <span class="fw-bold"> Üdvözlünk </span> <span class="fw-bold" sec:authentication="name"> </span>
+                <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
+                    | <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Kijelentkezés</a>
+                </form>
+            </div>
     <div layout:fragment="title">
         <div class="container pt-5">
             <h1 class="text-center"><a th:href="@{/}"> My Books Application</a></h1>

@@ -11,59 +11,68 @@
 </div>
 <div layout:fragment="content">
     <div class="py-3 px-5">
-        <h3 class="text-center text-secondary">Kérlek jelentkezz be</h3>
+        <h3 class="text-center">Kérlek jelentkezz be</h3>
         <br>
         <form name="Login" th:action="@{/login}" method="post">
             <div class="row">
-            <div th:if="${param.error}" class="alert alert-danger">Hibás felhasználói név és jelszó</div>
+            <div th:if="${param.error}" class="alert alert-danger text-center">Hibás felhasználói név és jelszó</div>
             </div>
             <div class="row">
-            <div th:if="${param.logout}" class="alert alert-success">Sikeresen kijelentkeztél</div>
+            <div th:if="${param.logout}" class="alert alert-success text-center">Sikeresen kijelentkeztél</div>
             </div>
             <div class="row">
                 <div class="col-md-3 col-xl-3"></div>
                 <div class="col-md-2 col-xl-2 text-end">
-                    <label for="username" class="text-secondary font-weight-bolder">Felhasználói név</label>
+                    <label for="username" class="fw-bold">Felhasználói név</label>
                 </div>
-                <div class="col-md-4 col-xl-4">
-                    <input type="text" id="username" name="username" class="text-secondary border-secondary form-control p-1" placeholder="Felhasználó név" required="true"/>
+                <div class="col-md-4 col-xl-3">
+                    <input type="text" id="username" name="username" class="text-primary border-secondary form-control p-1" placeholder="Felhasználó név" required="true"/>
                 </div>
-                <div class="col-md-3 col-xl-3"></div>
+                <div class="col-md-3 col-xl-4"></div>
             </div>
             </br>
             <div class="row">
                 <div class="col-md-3 col-xl-3"></div>
                 <div class="col-md-2 col-xl-2 text-end">
-                    <label for="password" class="text-secondary font-weight-bolder">Jelszó</label>
+                    <label for="password" class="fw-bold">Jelszó</label>
                 </div>
-                <div class="col-md-4 col-xl-4">
-                    <input type="password" id="password" name="password" class="text-secondary border-secondary form-control p-1" placeholder="Jelszó"
+                <div class="col-md-4 col-xl-3">
+                    <input type="password" id="password" name="password" class="text-primary border-secondary form-control p-1" placeholder="Jelszó"
                            required="true"/>
                 </div>
-                <div class="col-md-3 col-xl-3"></div>
+                <div class="col-md-3 col-xl-4"></div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-3 col-xl-3"></div>
                 <div class="col-md-2 col-xl-2 text-end">
-                    <label>
-                        <input id="remember-me" name="remember-me" type="checkbox"/> Emlékezz rám
-                    </label>
+
                     </div>
-                <div class="col-md-4 col-xl-4"></div>
-                <div class="col-md-3 col-xl-3"></div>
+                <div class="col-md-4 col-xl-3">  <label>
+                    <input id="remember-me" name="remember-me" type="checkbox"/> Emlékezz rám
+                </label></div>
+                <div class="col-md-3 col-xl-4"></div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-3 col-xl-3"></div>
                 <div class="col-md-2 col-xl-2"></div>
-                <div class="col-md-4 col-xl-4">
+                <div class="col-md-4 col-xl-3">
                     <input type="submit" class="btn btn-outline-secondary btn-light align-middle py-1" value="Bejelentkezés"/>
                 </div>
-                <div class="col-md-3 col-xl-3"></div>
+                <div class="col-md-3 col-xl-4"></div>
             </div>
         </form>
-        <div><a href="/registration">Regisztrálni szeretnék</a></div>
+        <br>
+        <div class="row">
+            <div class="col-md-3 col-xl-3"></div>
+            <div class="col-md-2 col-xl-2"></div>
+            <div class="col-md-4 col-xl-3">
+                <a href="/registration">Regisztrálni szeretnék</a>
+            </div>
+            <div class="col-md-3 col-xl-4"></div>
+        </div>
+
     </div>
 </div>
 </body>

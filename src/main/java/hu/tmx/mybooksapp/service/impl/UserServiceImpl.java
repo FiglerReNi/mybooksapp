@@ -5,9 +5,9 @@ import hu.tmx.mybooksapp.entity.User;
 import hu.tmx.mybooksapp.repository.RoleDao;
 import hu.tmx.mybooksapp.repository.UserDao;
 import hu.tmx.mybooksapp.service.UserService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Random;
 
 @Service
@@ -26,10 +26,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String registerUser(User user) {
+    public void registerUser(User user) {
         User userCheck = userDao.findByEmail(user.getEmail());
         if(userCheck != null) {
-            return "alreadyExist";
+            throw new IllegalArgumentException("Ezzel az emailcímmel már van regisztráció");
         }
         Role userRole = roleDao.findByRole(USER_ROLE);
         if(userRole != null) {
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(false);
         user.setActivation(generatedKey());
         userDao.save(user);
-        return "ok";
+
     }
 
     private String generatedKey() {
@@ -53,15 +53,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String userActivation(String code) {
+    public void userActivation(String code) throws NotFoundException {
         User user = userDao.findByActivation(code);
         if(user == null) {
-            System.out.println("hiba");
-            return "noResult";
+            throw new NotFoundException("Hibás az aktiváló kód");
         }
         user.setEnabled(true);
         user.setActivation("");
         userDao.save(user);
-        return "ok";
     }
 }

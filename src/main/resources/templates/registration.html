@@ -10,16 +10,56 @@
     </div>
 </div>
 <div layout:fragment="content">
+    <div class="py-3 px-5">
+        <h3 class="text-center">Kérlek regisztrálj</h3>
+        <br>
     <form name="registration" th:action="@{/reg}" th:object="${user}" method="post" class="form-signin">
-        <h2 class="form-signin-heading">Kérlek regisztrálj</h2>
-        <label for="username" class="sr-only">Felhasználó név</label>
-        <input type="text" id="username" name="username" th:field="*{username}" class="form-control" placeholder="Username" required="true"/>
-        <label for="email" class="sr-only">Email cím</label>
-        <input type="text" id="email" name="email" th:field="*{email}" class="form-control" placeholder="Email" required="true"/>
-        <label for="password" class="sr-only">Jelszó</label>
-        <input type="password" id="password" name="password" th:field="*{password}" class="form-control" placeholder="Jelszó" required="true"/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Regisztráció</button>
+        <div class="row">
+            <div class="col-md-3 col-xl-3"></div>
+            <div class="col-md-2 col-xl-2 text-end">
+                <label for="username" class="fw-bold">Felhasználó név</label>
+            </div>
+            <div class="col-md-4 col-xl-3">
+                <!--/*@thymesVar id="username" type="java.lang.String"*/-->
+                <input type="text" id="username" name="username" th:field="*{username}" class="text-primary border-secondary form-control p-1" placeholder="Username" required="true"/>
+            </div>
+            <div class="col-md-3 col-xl-4"></div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="col-md-3 col-xl-3"></div>
+            <div class="col-md-2 col-xl-2 text-end">
+                <label for="email" class="fw-bold">Email cím</label>
+            </div>
+            <div class="col-md-4 col-xl-3">
+                <!--/*@thymesVar id="email" type="java.lang.String"*/-->
+                <input type="text" id="email" name="email" th:field="*{email}" class="text-primary border-secondary form-control p-1" placeholder="Email" required="true"/>
+            </div>
+            <div class="col-md-3 col-xl-4"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3 col-xl-3"></div>
+            <div class="col-md-2 col-xl-2 text-end">
+                <label for="password" class="fw-bold">Jelszó</label>
+            </div>
+            <div class="col-md-4 col-xl-3">
+                <!--/*@thymesVar id="password" type="java.lang.String"*/-->
+                <input type="text" id="password" name="password" th:field="*{password}" class="text-primary border-secondary form-control p-1" placeholder="Jelszó" required="true"/>
+            </div>
+            <div class="col-md-3 col-xl-4"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3 col-xl-3"></div>
+            <div class="col-md-2 col-xl-2"></div>
+            <div class="col-md-4 col-xl-3">
+                <input type="submit" class="btn btn-outline-secondary btn-light align-middle py-1" value="Regisztráció"/>
+            </div>
+            <div class="col-md-3 col-xl-4"></div>
+        </div>
     </form>
+</div>
 </div>
 </body>
 </html>

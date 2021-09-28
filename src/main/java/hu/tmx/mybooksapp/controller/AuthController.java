@@ -3,6 +3,7 @@ package hu.tmx.mybooksapp.controller;
 import hu.tmx.mybooksapp.entity.User;
 import hu.tmx.mybooksapp.service.EmailService;
 import hu.tmx.mybooksapp.service.UserService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,14 +28,14 @@ public class AuthController {
     }
 
     @PostMapping("/reg")
-    public String reg(@ModelAttribute User user) {
+    public String reg(@ModelAttribute User user) throws Exception {
         userService.registerUser(user);
         emailService.sendMessage(user.getEmail(), user.getActivation(), user.getUsername());
         return "auth/login";
     }
 
     @GetMapping("/activation/{code}")
-    public String activation(@PathVariable(value="code") String code) {
+    public String activation(@PathVariable(value="code") String code) throws NotFoundException {
         userService.userActivation(code);
         return "auth/login";
     }

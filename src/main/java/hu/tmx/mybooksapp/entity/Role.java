@@ -11,8 +11,8 @@ import java.util.Set;
 @Entity(name="roles")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Builder
+@Getter
+@Setter
 public class Role {
 
     @Id

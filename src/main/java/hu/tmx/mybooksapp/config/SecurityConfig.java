@@ -3,9 +3,11 @@ package hu.tmx.mybooksapp.config;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -16,8 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/activation/**").permitAll()
                 .antMatchers("/reg").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/rest/authors/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/rest/books/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/view/authors/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/view/books/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -27,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
+        http
+                .csrf().disable();
 
     }
 
