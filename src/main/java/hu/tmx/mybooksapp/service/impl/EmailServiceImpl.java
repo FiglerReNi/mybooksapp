@@ -21,8 +21,6 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    Logger log = LoggerFactory.getLogger(this.getClass());
-
     public void sendMessage(String email, String code, String name){
         SimpleMailMessage msg;
             msg = new SimpleMailMessage();

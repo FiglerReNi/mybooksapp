@@ -20,7 +20,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+        Collection<GrantedAuthority> authorities = new HashSet<>();
         for(Role role :user.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
