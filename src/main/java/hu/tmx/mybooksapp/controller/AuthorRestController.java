@@ -1,6 +1,8 @@
 package hu.tmx.mybooksapp.controller;
 
+import hu.tmx.mybooksapp.exception.ListItemNotFoundException;
 import hu.tmx.mybooksapp.model.Author;
+import hu.tmx.mybooksapp.model.ext.AuthorExt;
 import hu.tmx.mybooksapp.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,21 +10,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/rest/authors")
 public class AuthorRestController {
 
     @Autowired
     private AuthorService authorService;
-//
-//    @GetMapping(path = " ")
-//    public List<Author> allAuthor() throws ListItemNotFoundException {
-//        if (authorService.getAllAuthor().isEmpty()) {
-//            throw new ListItemNotFoundException();
-//        }
-//        return authorService.getAllAuthor();
-//    }
-//
+
+    @GetMapping(path = " ")
+    public List<AuthorExt> allAuthor() throws ListItemNotFoundException {
+        if (authorService.getAllAuthor().isEmpty()) {
+            throw new ListItemNotFoundException();
+        }
+        return authorService.getAllAuthor();
+    }
+
     @GetMapping(path = "/{id}")
     public Author authorById(@PathVariable(value = "id") int id) {
         return authorService.getAuthorById(id);

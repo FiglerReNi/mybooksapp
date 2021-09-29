@@ -34,4 +34,9 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    public Book(long id, String title, int releaseDate) {
+        this.id = id;
+        this.title = title;
+        this.releaseDate = releaseDate;
+    }
 }

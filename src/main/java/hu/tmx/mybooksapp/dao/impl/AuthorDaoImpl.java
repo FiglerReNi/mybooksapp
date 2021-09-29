@@ -2,34 +2,37 @@ package hu.tmx.mybooksapp.dao.impl;
 
 import hu.tmx.mybooksapp.dao.AuthorDao;
 import hu.tmx.mybooksapp.model.Author;
+import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.util.NoSuchElementException;
+import java.util.List;
 
-@Component
+@Repository
 public class AuthorDaoImpl implements AuthorDao {
 
     @Autowired
     EntityManager entityManager;
 
-
-
-//    @Override
-//    public List<Author> getAllAuthor() {
-//        return null;
-//    }
+    @Override
+    public List<Author> getAllAuthor() {
+          return entityManager.createQuery(SELECT_AUTHOR.toString(), Author.class)
+                   .getResultList();
+    }
 
     @Override
     public Author getAuthorById(long id) {
-        try{
             return (Author) entityManager.createQuery(SELECT_AUTHOR_BY_ID.toString())
                     .setParameter("id", id)
                     .getSingleResult();
-        }catch (Exception exception){
-            throw new NoSuchElementException(id + ". id doesn't exists.");
-        }
+    }
+
+    @Override
+    public List<Book> getBooksByAuthorId(Author author) {
+        return entityManager.createQuery(SELECT_BOOKS_BY_AUTHOR_ID.toString(), Book.class)
+                .setParameter("author", author)
+                .getResultList();
     }
 //
 //    @Override

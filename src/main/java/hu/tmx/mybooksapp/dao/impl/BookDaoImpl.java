@@ -2,22 +2,35 @@ package hu.tmx.mybooksapp.dao.impl;
 
 import hu.tmx.mybooksapp.dao.BookDao;
 import hu.tmx.mybooksapp.model.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+@Repository
 public class BookDaoImpl implements BookDao {
 
-//
-//    @Override
-//    public List<Book> getAllBooksWithAuthor() {
-//        return null;
-//    }
+    @Autowired
+    EntityManager entityManager;
+
+    @Override
+    public List<Book> getAllBooksWithAuthor() {
+        return entityManager.createQuery(SELECT_BOOK.toString(), Book.class)
+                .getResultList();
+    }
 
     @Override
     public Book getBookWithAuthorById(long id) {
-        return null;
+
+            return (Book) entityManager.createQuery(SELECT_BOOK_BY_ID.toString())
+                    .setParameter("id", id)
+                    .getSingleResult();
+
     }
-//
+
+
 //    @Override
 //    public void saveToDatabase(Book book) {
 //
