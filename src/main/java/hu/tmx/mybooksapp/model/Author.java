@@ -1,8 +1,7 @@
-package hu.tmx.mybooksapp.entity;
+package hu.tmx.mybooksapp.model;
 
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -11,12 +10,9 @@ import javax.validation.constraints.Positive;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "authors")
+@Builder
 public class Author {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private long id;
 
@@ -33,5 +29,4 @@ public class Author {
     @NotNull
     @Positive
     private Integer age;
-
 }

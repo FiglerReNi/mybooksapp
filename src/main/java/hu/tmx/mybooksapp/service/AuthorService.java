@@ -1,15 +1,14 @@
 package hu.tmx.mybooksapp.service;
 
-import hu.tmx.mybooksapp.entity.Author;
-import java.util.List;
+import hu.tmx.mybooksapp.model.Author;
 
 public interface AuthorService {
-
-    List<Author> getAllAuthor();
-
-    Author getAuthorById(int id);
-
-    Author save(Author author);
-
-    void delete(Author authorById);
+//
+//    List<Author> getAllAuthor();
+//
+    Author getAuthorById(long id);
+//
+//    Author save(Author author);
+//
+//    void delete(Author authorById);
 }

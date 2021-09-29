@@ -1,20 +1,17 @@
-package hu.tmx.mybooksapp.entity;
+package hu.tmx.mybooksapp.model;
 
+import hu.tmx.mybooksapp.entity.Author;
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "books")
+@NoArgsConstructor
+@Builder
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private long id;
 
@@ -30,8 +27,5 @@ public class Book {
     private int releaseDate;
 
     @Valid
-    @ManyToOne
-    @JoinColumn(name = "author_id")
     private Author author;
-
 }
