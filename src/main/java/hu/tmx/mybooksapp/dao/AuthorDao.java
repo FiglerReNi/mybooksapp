@@ -23,7 +23,7 @@ public interface AuthorDao {
     StringBuilder SELECT_BOOKS_BY_AUTHOR_ID = new StringBuilder()
             .append("SELECT NEW ")
             .append("hu.tmx.mybooksapp.model.Book")
-            .append("(books.id, books.title, books.releaseDate, books.author) ")
+            .append("(books.id, books.title, books.releaseDate) ")
             .append("FROM Book books WHERE books.author = :author");
 
 

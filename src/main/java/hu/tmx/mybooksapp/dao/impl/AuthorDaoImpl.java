@@ -30,8 +30,12 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public List<Book> getBooksByAuthorId(Author author) {
+        hu.tmx.mybooksapp.entity.Author authorParam
+                = hu.tmx.mybooksapp.entity.Author.builder()
+                .id(author.getId()).firstName(author.getFirstName()).lastName(author.getLastName()).age(author.getAge())
+                .build();
         return entityManager.createQuery(SELECT_BOOKS_BY_AUTHOR_ID.toString(), Book.class)
-                .setParameter("author", author)
+                .setParameter("author", authorParam)
                 .getResultList();
     }
 //
