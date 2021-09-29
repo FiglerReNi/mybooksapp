@@ -25,11 +25,16 @@ $(document).ready(function () {
     });
 
     $('[name=deleteButtonA]').click(function () {
+        var token = $('#_csrf').attr('content');
+        var header = $('#_csrf_header').attr('content')
         $.ajax({
             url: "authors/" + this.id,
             type: "DELETE",
-            success: function () {
-                window.open("/", "_self")
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (data) {
+                $("body").html(data)
             },
             error: function (){
                 alert("Jogosultság hiba")
@@ -38,11 +43,16 @@ $(document).ready(function () {
     });
 
     $('[name=deleteButtonB]').click(function () {
+        var token = $('#_csrf').attr('content');
+        var header = $('#_csrf_header').attr('content');
         $.ajax({
             url: "books/" + this.id,
             type: "DELETE",
-            success: function () {
-                window.open("/", "_self")
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (data) {
+                $("body").html(data)
             },
             error: function (){
                 alert("Jogosultság hiba")
