@@ -4,12 +4,13 @@ import hu.tmx.mybooksapp.exception.ListItemNotFoundException;
 import hu.tmx.mybooksapp.model.Book;
 import hu.tmx.mybooksapp.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/rest/books")
@@ -33,13 +34,13 @@ public class BookRestController {
         return bookService.getBookWithAuthorById(id);
     }
 
-//    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Object> deleteBook(@PathVariable(value = "id") int id) {
-//        bookService.delete(bookService.getBookWithAuthorById(id));
-//        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
-//                "status", HttpStatus.OK.value(),
-//                "message", "successful deletion"));
-//    }
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> deleteBook(@PathVariable(value = "id") int id) {
+        bookService.delete(bookService.getBookWithAuthorById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", HttpStatus.OK.value(),
+                "message", "successful deletion"));
+    }
 //
 //    @PostMapping(" ")
 //    public ResponseEntity<Object> saveNewBook(@Valid @RequestBody Book book) {

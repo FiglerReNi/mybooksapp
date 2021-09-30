@@ -28,9 +28,11 @@ public class AuthorServiceImpl implements AuthorService {
 }
 
     @Override
-    public Author getAuthorById(long id) {
+    public AuthorExt getAuthorById(long id) {
         try {
-            return authorDao.getAuthorById(id);
+            Author author = authorDao.getAuthorById(id);
+            return new AuthorExt(author.getId(), author.getFirstName(), author.getLastName(), author.getAge(), authorDao.getBooksByAuthorId(author));
+
         } catch (Exception exception) {
             throw new NoSuchElementException(id + ". id doesn't exists.");
         }
@@ -41,11 +43,10 @@ public class AuthorServiceImpl implements AuthorService {
 //       return authorDao.save(author);
 //    }
 //
-//    @Override
-//    public void delete(Author author) {
-//        bookDao.deleteAll(bookDao.findAllByAuthorId(author.getId()));
-//        authorDao.delete(author);
-//    }
+    @Override
+    public void delete(Author author) {
+       authorDao.deleteFromDatabase(author);
+    }
 
 
 

@@ -4,12 +4,13 @@ import hu.tmx.mybooksapp.dao.BookDao;
 import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Repository
+@Transactional
 public class BookDaoImpl implements BookDao {
 
     @Autowired
@@ -23,11 +24,9 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book getBookWithAuthorById(long id) {
-
             return (Book) entityManager.createQuery(SELECT_BOOK_BY_ID.toString())
                     .setParameter("id", id)
                     .getSingleResult();
-
     }
 
 
@@ -36,10 +35,12 @@ public class BookDaoImpl implements BookDao {
 //
 //    }
 //
-//    @Override
-//    public void deleteFromDatabase(Book book) {
-//
-//    }
+    @Override
+    public void deleteFromDatabase(Book book) {
+        entityManager.createQuery(DELETE_BOOK_BY_ID.toString())
+                .setParameter("id", book.getId())
+                .executeUpdate();
+    }
 //
 //    @Override
 //    public void update(int id, Book book) {

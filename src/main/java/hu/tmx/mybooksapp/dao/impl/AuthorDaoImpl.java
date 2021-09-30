@@ -5,11 +5,13 @@ import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
+@Transactional
 public class AuthorDaoImpl implements AuthorDao {
 
     @Autowired
@@ -44,10 +46,19 @@ public class AuthorDaoImpl implements AuthorDao {
 //
 //    }
 //
-//    @Override
-//    public void deleteFromDatabase(Author authorById) {
-//
-//    }
+    @Override
+    public void deleteFromDatabase(Author author) {
+        hu.tmx.mybooksapp.entity.Author authorParam
+                = hu.tmx.mybooksapp.entity.Author.builder()
+                .id(author.getId()).firstName(author.getFirstName()).lastName(author.getLastName()).age(author.getAge())
+                .build();
+        entityManager.createQuery(DELETE_AUTHOR_BY_ID.toString())
+                .setParameter("id", author.getId())
+                .executeUpdate();
+        entityManager.createQuery(DELETE_BOOK_BY_AUTHOR_ID.toString())
+                .setParameter("author", authorParam)
+                .executeUpdate();
+    }
 //
 //    @Override
 //    public void update(int id, Author author) {

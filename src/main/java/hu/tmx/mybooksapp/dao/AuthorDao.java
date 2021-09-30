@@ -26,6 +26,12 @@ public interface AuthorDao {
             .append("(books.id, books.title, books.releaseDate) ")
             .append("FROM Book books WHERE books.author = :author");
 
+    StringBuilder DELETE_AUTHOR_BY_ID = new StringBuilder()
+            .append("DELETE FROM Author authors WHERE authors.id = :id");
+
+    StringBuilder DELETE_BOOK_BY_AUTHOR_ID = new StringBuilder()
+            .append("DELETE FROM Book books WHERE books.author = :author");
+
 
     List<Author> getAllAuthor();
 
@@ -35,7 +41,7 @@ public interface AuthorDao {
 //
 //    void saveToDatabase(Author author);
 //
-//    void deleteFromDatabase(Author authorById);
+    void deleteFromDatabase(Author author);
 //
 //    void update(int id, Author author);
 

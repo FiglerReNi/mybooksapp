@@ -18,13 +18,16 @@ public interface BookDao {
             .append("(books.id, books.title, books.releaseDate, books.author) ")
             .append("FROM Book books WHERE books.id = :id");
 
+    StringBuilder DELETE_BOOK_BY_ID = new StringBuilder()
+            .append("DELETE FROM Book books WHERE books.id = :id");
+
     List<Book> getAllBooksWithAuthor();
 
     Book getBookWithAuthorById(long id);
 //
 //    void saveToDatabase(Book book);
 //
-//    void deleteFromDatabase(Book book);
+    void deleteFromDatabase(Book book);
 //
 //    void update(int id, Book book);
 }

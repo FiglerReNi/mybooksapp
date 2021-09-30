@@ -34,10 +34,10 @@ public class BookServiceImpl implements BookService {
 //        return bookDao.save(book);
 //    }
 //
-//    @Override
-//    public void delete(Book book) {
-//        bookDao.delete(book);
-//    }
+    @Override
+    public void delete(Book book) {
+        bookDao.deleteFromDatabase(book);
+    }
 
 
 }
