@@ -29,7 +29,6 @@ public class BookDaoImpl implements BookDao {
                     .getSingleResult();
     }
 
-
     @Override
     public void insertIntoDatabase(Book book) {
         hu.tmx.mybooksapp.entity.Book bookParam
@@ -45,9 +44,14 @@ public class BookDaoImpl implements BookDao {
                 .setParameter("id", book.getId())
                 .executeUpdate();
     }
-//
-//    @Override
-//    public void update(int id, Book book) {
-//
-//    }
+
+    @Override
+    public void update(Book book) {
+        entityManager.createQuery(UPDATE_BOOK.toString())
+                .setParameter("title", book.getTitle())
+                .setParameter("releaseDate", book.getReleaseDate())
+                .setParameter("author", book.getAuthor())
+                .setParameter("id", book.getId())
+                .executeUpdate();
+    }
 }

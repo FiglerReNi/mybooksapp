@@ -50,19 +50,19 @@ public class AuthorRestController {
                 "status", HttpStatus.OK.value(),
                 "message", "author saved"));
     }
-//
-//    @PutMapping(value = "/{id}")
-//    public ResponseEntity<Object> updateAuthor(@PathVariable(value = "id") int id, @Valid @RequestBody Author author) {
-//        if (null != authorService.getAuthorById(id)) {
-//            Author updatedAuthor = Author.builder()
-//                    .id(id)
-//                    .firstName(author.getFirstName())
-//                    .lastName(author.getLastName())
-//                    .age(author.getAge()).build();
-//            authorService.save(updatedAuthor);
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
-//                "status", HttpStatus.OK.value(),
-//                "message", "author updated"));
-//    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateAuthor(@PathVariable(value = "id") int id, @Valid @RequestBody Author author) {
+        if (null != authorService.getAuthorById(id)) {
+            Author updatedAuthor = Author.builder()
+                    .id(id)
+                    .firstName(author.getFirstName())
+                    .lastName(author.getLastName())
+                    .age(author.getAge()).build();
+            authorService.update(updatedAuthor);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", HttpStatus.OK.value(),
+                "message", "author updated"));
+    }
 }

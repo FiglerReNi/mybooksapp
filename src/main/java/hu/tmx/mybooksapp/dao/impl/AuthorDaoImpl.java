@@ -63,9 +63,14 @@ public class AuthorDaoImpl implements AuthorDao {
                 .setParameter("author", authorParam)
                 .executeUpdate();
     }
-//
-//    @Override
-//    public void update(int id, Author author) {
-//
-//    }
+
+    @Override
+    public void update(Author author) {
+        entityManager.createQuery(UPDATE_AUTHOR.toString())
+                .setParameter("firstName", author.getFirstName())
+                .setParameter("lastName", author.getLastName())
+                .setParameter("age", author.getAge())
+                .setParameter("id", author.getId())
+                .executeUpdate();
+    }
 }

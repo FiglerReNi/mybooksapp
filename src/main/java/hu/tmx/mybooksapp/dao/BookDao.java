@@ -1,6 +1,5 @@
 package hu.tmx.mybooksapp.dao;
 
-import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
 
 import java.util.List;
@@ -22,9 +21,9 @@ public interface BookDao {
     StringBuilder DELETE_BOOK_BY_ID = new StringBuilder()
             .append("DELETE FROM Book books WHERE books.id = :id");
 
-//    StringBuilder INSERT_AUTHOR = new StringBuilder()
-//            .append("INSERT INTO authors (release_date, title, author_id) ")
-//            .append("VALUES (:releaseDate, :title, :authorID)");
+    StringBuilder UPDATE_BOOK = new StringBuilder()
+            .append("UPDATE Book books SET books.title = :title, books.releaseDate = :releaseDate, books.author = :author ")
+            .append("WHERE books.id = :id");
 
     List<Book> getAllBooksWithAuthor();
 
@@ -33,6 +32,6 @@ public interface BookDao {
     void insertIntoDatabase(Book book);
 
     void deleteFromDatabase(Book book);
-//
-//    void update(int id, Book book);
+
+    void update(Book book);
 }

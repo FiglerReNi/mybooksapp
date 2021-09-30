@@ -55,19 +55,19 @@ public class BookRestController {
                 "message", "book saved"));
     }
 
-//
-//    @PutMapping(value = "/{id}")
-//    public ResponseEntity<Object> updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book) {
-//        if(null != bookService.getBookWithAuthorById(id)){
-//            Book updatedBook = Book.builder()
-//                    .id(id)
-//                    .title(book.getTitle())
-//                    .releaseDate(book.getReleaseDate())
-//                    .author(authorService.getAuthorById(book.getAuthor().getId())).build();
-//            bookService.save(updatedBook);
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
-//                "status", HttpStatus.OK.value(),
-//                "message", "book updated"));
-//    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book) {
+        if(null != bookService.getBookWithAuthorById(id) && null != authorService.getAuthorById(book.getAuthor().getId())){
+            Book updatedBook = Book.builder()
+                    .id(id)
+                    .title(book.getTitle())
+                    .releaseDate(book.getReleaseDate())
+                    .author(book.getAuthor()).build();
+            bookService.update(updatedBook);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", HttpStatus.OK.value(),
+                "message", "book updated"));
+    }
 }

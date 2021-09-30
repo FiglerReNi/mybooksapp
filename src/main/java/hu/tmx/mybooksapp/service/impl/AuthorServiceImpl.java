@@ -17,9 +17,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
     private AuthorDao authorDao;
-//    @Autowired
-//    private BookDao bookDao;
-//
+
     @Override
     public List<AuthorExt> getAllAuthor() {
     return authorDao.getAllAuthor().stream()
@@ -48,6 +46,10 @@ public class AuthorServiceImpl implements AuthorService {
        authorDao.deleteFromDatabase(author);
     }
 
+    @Override
+    public void update(Author author) {
+        authorDao.update(author);
+    }
 
 
 }

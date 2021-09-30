@@ -2,7 +2,6 @@ package hu.tmx.mybooksapp.dao;
 
 import hu.tmx.mybooksapp.model.Author;
 import hu.tmx.mybooksapp.model.Book;
-import hu.tmx.mybooksapp.model.ext.AuthorExt;
 
 import java.util.List;
 
@@ -36,6 +35,9 @@ public interface AuthorDao {
             .append("INSERT INTO authors (first_name, last_name, age) ")
             .append("VALUES (:firstName, :lastName, :age)");
 
+    StringBuilder UPDATE_AUTHOR = new StringBuilder()
+            .append("UPDATE Author authors SET authors.firstName = :firstName, authors.lastName = :lastName, authors.age = :age ")
+            .append("WHERE authors.id = :id");
 
     List<Author> getAllAuthor();
 
@@ -46,7 +48,7 @@ public interface AuthorDao {
     void insertIntoDatabase(Author author);
 
     void deleteFromDatabase(Author author);
-//
-//    void update(int id, Author author);
+
+    void update(Author author);
 
 }

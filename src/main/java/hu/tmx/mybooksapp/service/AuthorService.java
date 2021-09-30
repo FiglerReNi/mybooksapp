@@ -14,4 +14,6 @@ public interface AuthorService {
     void insert(Author author);
 
     void delete(Author author);
+
+    void update(Author author);
 }
