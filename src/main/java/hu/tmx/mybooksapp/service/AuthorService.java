@@ -10,8 +10,8 @@ public interface AuthorService {
     List<AuthorExt> getAllAuthor();
 
     AuthorExt getAuthorById(long id);
-//
-//    Author save(Author author);
-//
+
+    void insert(Author author);
+
     void delete(Author author);
 }

@@ -28,12 +28,12 @@ public class BookServiceImpl implements BookService {
             throw new NoSuchElementException(id + ". id doesn't exists.");
         }
     }
-//
-//    @Override
-//    public Book save(Book book) {
-//        return bookDao.save(book);
-//    }
-//
+
+    @Override
+    public void insert(Book book) {
+        bookDao.insertIntoDatabase(book);
+    }
+
     @Override
     public void delete(Book book) {
         bookDao.deleteFromDatabase(book);

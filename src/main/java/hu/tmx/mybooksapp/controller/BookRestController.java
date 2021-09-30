@@ -2,6 +2,7 @@ package hu.tmx.mybooksapp.controller;
 
 import hu.tmx.mybooksapp.exception.ListItemNotFoundException;
 import hu.tmx.mybooksapp.model.Book;
+import hu.tmx.mybooksapp.service.AuthorService;
 import hu.tmx.mybooksapp.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +20,10 @@ public class BookRestController {
 
     @Autowired
     private BookService bookService;
-//    @Autowired
-//    private AuthorService authorService;
-//
+
+    @Autowired
+    private AuthorService authorService;
+
     @GetMapping(path = " ")
     public List<Book> allBooksWithAuthor() throws ListItemNotFoundException {
         if (bookService.getAllBooksWithAuthor().isEmpty()) {
@@ -41,17 +44,17 @@ public class BookRestController {
                 "status", HttpStatus.OK.value(),
                 "message", "successful deletion"));
     }
-//
-//    @PostMapping(" ")
-//    public ResponseEntity<Object> saveNewBook(@Valid @RequestBody Book book) {
-//        if (null != authorService.getAuthorById(book.getAuthor().getId())) {
-//            bookService.save(book);
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
-//                "status", HttpStatus.OK.value(),
-//                "message", "book saved"));
-//    }
-//
+
+    @PostMapping(" ")
+    public ResponseEntity<Object> saveNewBook(@Valid @RequestBody Book book) {
+        if (null != authorService.getAuthorById(book.getAuthor().getId())) {
+            bookService.insert(book);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of(
+                "status", HttpStatus.OK.value(),
+                "message", "book saved"));
+    }
+
 //
 //    @PutMapping(value = "/{id}")
 //    public ResponseEntity<Object> updateBook(@PathVariable(value = "id") int id, @Valid @RequestBody Book book) {

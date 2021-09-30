@@ -30,11 +30,15 @@ public class BookDaoImpl implements BookDao {
     }
 
 
-//    @Override
-//    public void saveToDatabase(Book book) {
-//
-//    }
-//
+    @Override
+    public void insertIntoDatabase(Book book) {
+        hu.tmx.mybooksapp.entity.Book bookParam
+                = hu.tmx.mybooksapp.entity.Book.builder()
+                .releaseDate(book.getReleaseDate()).title(book.getTitle()).author(book.getAuthor())
+                .build();
+        entityManager.persist(bookParam);
+    }
+
     @Override
     public void deleteFromDatabase(Book book) {
         entityManager.createQuery(DELETE_BOOK_BY_ID.toString())

@@ -32,15 +32,19 @@ public interface AuthorDao {
     StringBuilder DELETE_BOOK_BY_AUTHOR_ID = new StringBuilder()
             .append("DELETE FROM Book books WHERE books.author = :author");
 
+    StringBuilder INSERT_AUTHOR = new StringBuilder()
+            .append("INSERT INTO authors (first_name, last_name, age) ")
+            .append("VALUES (:firstName, :lastName, :age)");
+
 
     List<Author> getAllAuthor();
 
     Author getAuthorById(long id);
 
     List<Book> getBooksByAuthorId(Author author);
-//
-//    void saveToDatabase(Author author);
-//
+
+    void insertIntoDatabase(Author author);
+
     void deleteFromDatabase(Author author);
 //
 //    void update(int id, Author author);

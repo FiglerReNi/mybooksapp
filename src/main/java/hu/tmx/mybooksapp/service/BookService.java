@@ -9,9 +9,9 @@ public interface BookService {
     List<Book> getAllBooksWithAuthor();
 
     Book getBookWithAuthorById(long id);
-//
-//    Book save(Book book);
-//
+
+    void insert(Book book);
+
     void delete(Book book);
 
 }

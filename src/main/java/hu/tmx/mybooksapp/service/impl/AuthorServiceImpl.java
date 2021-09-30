@@ -37,12 +37,12 @@ public class AuthorServiceImpl implements AuthorService {
             throw new NoSuchElementException(id + ". id doesn't exists.");
         }
     }
-//
-//    @Override
-//    public Author save(Author author) {
-//       return authorDao.save(author);
-//    }
-//
+
+    @Override
+    public void insert(Author author) {
+       authorDao.insertIntoDatabase(author);
+    }
+
     @Override
     public void delete(Author author) {
        authorDao.deleteFromDatabase(author);

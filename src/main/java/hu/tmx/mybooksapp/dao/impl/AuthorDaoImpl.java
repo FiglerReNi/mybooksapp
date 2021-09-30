@@ -40,12 +40,16 @@ public class AuthorDaoImpl implements AuthorDao {
                 .setParameter("author", authorParam)
                 .getResultList();
     }
-//
-//    @Override
-//    public void saveToDatabase(Author author) {
-//
-//    }
-//
+
+    @Override
+    public void insertIntoDatabase(Author author) {
+        entityManager.createNativeQuery(INSERT_AUTHOR.toString())
+                .setParameter("firstName", author.getFirstName())
+                .setParameter("lastName", author.getLastName())
+                .setParameter("age", author.getAge())
+                .executeUpdate();
+    }
+
     @Override
     public void deleteFromDatabase(Author author) {
         hu.tmx.mybooksapp.entity.Author authorParam
